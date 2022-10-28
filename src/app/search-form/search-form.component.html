@@ -1,0 +1,80 @@
+<div class="container">
+    <div class="row top">
+
+        <form ngNativeValidate class="form">
+            <div class="form-title">Business Search</div>
+            <div class="row mb-3">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="keyword">Keyword</label><span style="color:#ff0000">*</span>
+                        <input matInput required type="text" id="name" class="form-control input-lg">
+                    </div>
+                </div>
+            </div>
+            <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
+                <ng-container *ngIf="!isLoading">
+                    <mat-option *ngFor="let option of options" [value]="option">
+                        {{option}}
+                    </mat-option>
+                </ng-container>
+            </mat-autocomplete>
+            <div class="row mb-3">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="distance">Distance</label>
+                        <input type="number" class="form-control input-lg">
+                    </div>
+
+                </div>
+                <div class="col-5">
+                    <div class="form-group">
+                        <label for="category">Category</label><span style="color:#ff0000">*</span>
+                        <select class="form-select" id="sel1" name="sellist1">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                        </select>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label for="location">Location</label><span style="color:#ff0000">*</span>
+                        <input type="text" class="form-control input-lg">
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-12">
+                    <div class="form-group">
+                        <input class="form-check-input" type="checkbox" id="check1" name="option1"
+                            value="something">&nbsp;
+                        <label>Auto-detect my location</label>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="row mb-3">
+
+                <div class="form-buttons form-group">
+                    <button type="submit" class="btn btn-danger m-4 text-btn-size  ">Submit</button>
+                    <button type="button" class="btn btn-primary text-btn-size ">Clear</button>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+.form {
+    background-color: white;
+    padding: 5vh;
+    width: 45rem;
+    border-radius: 1vh;
+}
+
+.top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0.01rem;
+}
+
+
+
+.form-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-title {
+    font-size: 23px;
+    font-weight: 550;
+    text-align: center;
+    padding: 3vh;
+}
+
+.text-btn-size {
+    font-size: 20px;
+}
