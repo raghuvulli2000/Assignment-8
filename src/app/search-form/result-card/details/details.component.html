@@ -1,2 +1,29 @@
-<p>details works!</p>
-<p>{{detailData}}</p>
+<div class="container">
+
+    <div class="top white">
+        <span style='font-size:50px;' (click)="goBack()">&#8592;</span>
+        <google-map [width]="800" [height]="600" [options]="mapOptions">
+            <map-marker [position]="marker.position"></map-marker>
+        </google-map>
+    </div>
+</div>
+<br>
+<div class="container">
+    <div class="top white">
+        <table class="table table-striped">
+            <tbody>
+                <tr *ngFor="let object of reviewsData; let i = index">
+                    <td>
+                        <p>{{object.user.name}}<br>
+                            Rating: {{object.rating}}/5</p>
+
+
+                        <p>{{object.text}}</p>
+
+                        <p>{{object.time_created.slice(0,10)}}</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

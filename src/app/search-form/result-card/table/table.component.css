@@ -1,6 +1,6 @@
 table {
     background-color: white;
-    width: 70rem;
+
 }
 
 .top {
@@ -10,6 +10,7 @@ table {
     margin: 0.01rem;
 }
 
+td,
 th {
     text-align: center;
 }

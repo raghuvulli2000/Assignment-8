@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchFormComponent } from './search-form/search-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { GoogleMapsModule } from '@angular/google-maps'
 
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -39,7 +39,8 @@ import { DetailsComponent } from './search-form/result-card/details/details.comp
     MatInputModule,
     MatIconModule,
     MatButtonModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    GoogleMapsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

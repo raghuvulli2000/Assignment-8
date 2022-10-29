@@ -10,7 +10,8 @@ export class ResultCardComponent implements OnInit {
   loadTable: boolean = false;
   loadDetail: boolean = false;
   businessData: [any];
-  detailData:{};
+  detailData:any;
+  reviewsData:[];
   constructor(private backendApi: BackendApiService) { }
 
   ngOnInit(): void {
@@ -21,13 +22,22 @@ export class ResultCardComponent implements OnInit {
       console.log("In result-card");
       console.log(this.businessData);
     });
-    this.backendApi.detailsFetched.subscribe((data:{})=>{
+    this.backendApi.detailsFetched.subscribe((data)=>{
       this.detailData = data;
       console.log("In result-card details fetched into parent")
       console.log(this.detailData);
       this.loadTable = false;
       this.loadDetail = true;
     });
+    this.backendApi.reviewsFetched.subscribe((data:any)=>{
+      this.reviewsData = data;
+      console.log("In result-card details fetched into parent")
+      console.log(this.reviewsData);
+    })
+    this.backendApi.backEvent.subscribe(()=>{
+      this.loadDetail = false;
+      this.loadTable = true;
+    })
     this.backendApi.clearEvent.subscribe(()=>{
       this.loadTable = false;
       this.loadDetail = false;

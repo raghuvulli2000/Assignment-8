@@ -7,7 +7,9 @@ export class BackendApiService {
   businessData: [any];
   dataFetched = new EventEmitter<[any]>();
   clearEvent = new EventEmitter();
-  detailsFetched = new EventEmitter<{}>();
+  detailsFetched = new EventEmitter<any>();
+  reviewsFetched = new EventEmitter<[any]>();
+  backEvent = new EventEmitter();
 
   constructor(private http: HttpClient) { }
 
@@ -34,6 +36,12 @@ export class BackendApiService {
       console.log(data);
       this.detailsFetched.emit(data);
     });
+    var prl = "http://localhost:5000" + "/businessid?id=" + id + "/reviews";
+    console.log(prl);
+    this.http.get(prl).subscribe((data:any)=>{
+      console.log(data.reviews);
+      this.reviewsFetched.emit(data.reviews);
+    })
   }
 
 }
