@@ -1,13 +1,30 @@
 <div class="container">
+    <span style='font-size:50px;' (click)="goBack()">&#8592;</span>
 
+    <br>
+    <br>
+    <br>
     <div class="top white">
-        <span style='font-size:50px;' (click)="goBack()">&#8592;</span>
+
         <google-map [width]="800" [height]="600" [options]="mapOptions">
             <map-marker [position]="marker.position"></map-marker>
         </google-map>
     </div>
 </div>
 <br>
+<div class="top white">
+    <div class="data-container">
+        <div *ngFor="let item of filteredData" class="flex-div">
+            <p>{{item[0]}}</p>
+            <p>{{item[1]}}</p>
+        </div>
+        <div class="flex-div">
+            <p>Visit Yelp For More</p>
+            <a [href]="detailData.url">Business Link</a>
+        </div>
+
+    </div>
+</div>
 <div class="container">
     <div class="top white">
         <table class="table table-striped">
