@@ -14,13 +14,19 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
+import { ResultCardComponent } from './search-form/result-card/result-card.component';
+import { TableComponent } from './search-form/result-card/table/table.component';
+import { DetailsComponent } from './search-form/result-card/details/details.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchFormComponent
+    SearchFormComponent,
+    ResultCardComponent,
+    TableComponent,
+    DetailsComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,22 @@
+<div class="top">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Image</th>
+                <th scope="col">Business Name</th>
+                <th scope="col">Rating</th>
+                <th scope="col">Distance (miles)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let object of tableData | slice:0:10; let i = index" (click)="viewDetail(object.id)">
+                <th scope="row">{{i+1}}</th>
+                <th><img [src]="object.image_url" width=100 height=100></th>
+                <th>{{object.name}}</th>
+                <th>{{object.rating}}</th>
+                <th>{{toMiles(object.distance)}}</th>
+            </tr>
+        </tbody>
+    </table>
+</div>

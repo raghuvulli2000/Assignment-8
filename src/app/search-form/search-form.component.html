@@ -1,13 +1,14 @@
 <div class="container">
     <div class="row top">
 
-        <form ngNativeValidate class="form">
+        <form ngNativeValidate [formGroup]="searchForm" class="form" (ngSubmit)="onSubmit()">
             <div class="form-title">Business Search</div>
             <div class="row mb-3">
                 <div class="col-12">
                     <div class="form-group">
                         <label for="keyword">Keyword</label><span style="color:#ff0000">*</span>
-                        <input matInput required type="text" id="name" class="form-control input-lg">
+                        <input matInput required type="text" id="keyword" class="form-control input-lg"
+                            formControlName="keyword" [matAutocomplete]="auto">
                     </div>
                 </div>
             </div>
@@ -23,18 +24,20 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label for="distance">Distance</label>
-                        <input type="number" class="form-control input-lg">
+                        <input type="number" class="form-control input-lg" formControlName="distance">
                     </div>
 
                 </div>
                 <div class="col-5">
                     <div class="form-group">
                         <label for="category">Category</label><span style="color:#ff0000">*</span>
-                        <select class="form-select" id="sel1" name="sellist1">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
+                        <select class="form-select" id="sel1" name="sellist1" required formControlName="category">
+                            <option value="All">Default</option>
+                            <option value="arts">Arts & Enteratinment</option>
+                            <option value="health">Health & Medical</option>
+                            <option value="hotelstravel">Hotel & Travel</option>
+                            <option value="food">Food</option>
+                            <option value="professional">Professional Services</option>
                         </select>
                     </div>
 
@@ -45,7 +48,8 @@
                 <div class="col-12">
                     <div class="form-group">
                         <label for="location">Location</label><span style="color:#ff0000">*</span>
-                        <input type="text" class="form-control input-lg">
+                        <input type="text" #locationField (blur)="onLocationBlur($event.target.value)"
+                            class="form-control input-lg" required formControlName="location">
                     </div>
 
                 </div>
@@ -55,8 +59,8 @@
             <div class="row mb-3">
                 <div class="col-12">
                     <div class="form-group">
-                        <input class="form-check-input" type="checkbox" id="check1" name="option1"
-                            value="something">&nbsp;
+                        <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something"
+                            formControlName="checkbox">&nbsp;
                         <label>Auto-detect my location</label>
                     </div>
 
@@ -70,7 +74,7 @@
 
                 <div class="form-buttons form-group">
                     <button type="submit" class="btn btn-danger m-4 text-btn-size  ">Submit</button>
-                    <button type="button" class="btn btn-primary text-btn-size ">Clear</button>
+                    <button type="button" class="btn btn-primary text-btn-size " (click)="onClear()">Clear</button>
                 </div>
 
             </div>
@@ -78,3 +82,4 @@
         </form>
     </div>
 </div>
+<app-result-card></app-result-card>
