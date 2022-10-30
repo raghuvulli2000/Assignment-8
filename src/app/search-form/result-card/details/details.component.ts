@@ -94,6 +94,12 @@ filterData(){
 			return `with: ${reason}`;
 		}
 	}
+  find_res(){
+    return this.resService.findItemForDetail(this.detailData.id);
+  }
+  cancelReservation(){
+   this.resService.deleteData(this.detailData.id);
+  }
     validate(form1: NgForm){
    // var form = document.getElementsByClassName('needs-validation')[0] as HTMLFormElement;
     // if (form.checkValidity() === false) {

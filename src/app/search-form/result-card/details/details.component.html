@@ -10,8 +10,11 @@
             <a [href]="detailData.url">Business Link</a>
         </div>
         <div class="col-12 btn-center">
-            <button type="button" class="btn btn-danger m-4 text-btn-size" (click)="open(content)">Reserve
+            <button *ngIf="!find_res()" type="button" class="btn btn-danger m-4 text-btn-size"
+                (click)="open(content)">Reserve
                 Now</button>
+            <button *ngIf="find_res()" type="button" class="btn btn-primary m-4 text-btn-size"
+                (click)="cancelReservation()">Cancel Reservation</button>
         </div>
 
 

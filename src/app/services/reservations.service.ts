@@ -18,14 +18,25 @@ export class ReservationsService {
         return i;
       i++;
     }
-    return 0;
+    return -1;
   }
-
+findItemForDetail(id:string){
+    var i:number=0;
+    for(var item of this.resData){
+      if(item.id == id)
+        return true;
+      i++;
+    }
+    return false;
+  }
   deleteData(id:string){
     var index:number = this.findItem(id);
-    if(index != 0){
+   // console.log("index:" + index);
+    if(index != -1){
       this.resData.splice(index, 1);
        this.changeDataEvent.emit(this.resData.slice());
+       return index;
     }
+    
   }
 }
