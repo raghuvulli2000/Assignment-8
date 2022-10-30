@@ -16,4 +16,11 @@ export class ReservationComponent implements OnInit {
     });
   }
 
+  deleteReservation(id:string){
+    
+    this.resService.deleteData(id);
+    alert("Reservation Cancelled!");
+
+  }
+
 }

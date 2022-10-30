@@ -11,15 +11,15 @@ export class ReservationsService {
     this.resData.push(data);
     this.changeDataEvent.emit(this.resData.slice());
   }
-  findItem(id:string){
-    var i:number=0;
-    for(var item of this.resData){
-      if(item.id == id)
-        return i;
-      i++;
-    }
-    return -1;
-  }
+  // findItem(id:string){
+  //   var i:number=0;
+  //   for(var item of this.resData){
+  //     if(item.id == id)
+  //       return i;
+  //     i++;
+  //   }
+  //   return -1;
+  // }
 findItemForDetail(id:string){
     var i:number=0;
     for(var item of this.resData){
@@ -30,7 +30,8 @@ findItemForDetail(id:string){
     return false;
   }
   deleteData(id:string){
-    var index:number = this.findItem(id);
+   // var index:number = this.findItem(id);
+    var index = this.resData.findIndex((e) => e.id==id);
    // console.log("index:" + index);
     if(index != -1){
       this.resData.splice(index, 1);

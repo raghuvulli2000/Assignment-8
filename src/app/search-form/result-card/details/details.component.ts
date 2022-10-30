@@ -99,6 +99,7 @@ filterData(){
   }
   cancelReservation(){
    this.resService.deleteData(this.detailData.id);
+   alert("Reservation Cancelled!")
   }
     validate(form1: NgForm){
    // var form = document.getElementsByClassName('needs-validation')[0] as HTMLFormElement;
@@ -112,6 +113,7 @@ filterData(){
     
   console.log(this.resformData);
   this.resService.appendData(this.resformData);
+  alert("Reservation Created!");
   this.modalService.dismissAll()
    }
   }

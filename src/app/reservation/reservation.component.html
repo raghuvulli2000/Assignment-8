@@ -1,1 +1,27 @@
-<p *ngFor="let item of resData">{{item.id}}</p>
+<div class="container">
+    <div class="top">
+        <table class="table table-striped white">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Business Name</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Email</th>
+                    <th scope="col"> </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let object of resData; let i = index">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{object.name}}</td>
+                    <td>{{object.date.year+"-"+object.date.month+"-"+object.date.day}}</td>
+                    <td>{{object.time}}</td>
+                    <td>{{object.email}}</td>
+                    <td (click)="deleteReservation(object.id)"><i class="fa fa-trash-o" aria-hidden="true"></i></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>

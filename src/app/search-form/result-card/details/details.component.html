@@ -1,6 +1,13 @@
 <div class="top">
     <span style='font-size:50px;' (click)="goBack()">&#8592;</span>
+
     <div class="row white">
+
+        <div class="col-12 center">
+            <br>
+            <h4>{{this.detailData.name}}</h4>
+        </div>
+        <br>
         <div *ngFor="let item of filteredData; let i = index" class="col-md-6 col-sm-12 center">
             <p>{{item[0]}}</p>
             <p>{{item[1]}}</p>
@@ -94,6 +101,9 @@
         <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
+        <div class="col-12 center">
+            <p>{{this.detailData.name}}</p>
+        </div>
         <form class="row g-3 needs-validation" novalidate (ngSubmit)="validate(f)" #f="ngForm">
             <div class="col-mb-3">
                 <label for="validationCustom05" class="form-label">Email</label>
@@ -111,11 +121,11 @@
                 <label for="dateOfBirth">Date</label>
                 <div class="input-group right-inner-addon">
 
-                    <input #dateInput id="dateOfBirth validationCustom05" [(ngModel)]="resformData.date" #date="ngModel"
-                        class="form-control" name="dp" ngbDatepicker #dp="ngbDatepicker" required date ngModel
+                    <input #dateInput type="date" id="dateOfBirth validationCustom05" [(ngModel)]="resformData.date"
+                        #date="ngModel" class="form-control" name="dp" ngbDatepicker #dp="ngbDatepicker" required date
+                        ngModel
                         [ngClass]="{'is-invalid': (date.errors && (date.touched || date.dirty)) ||  (date.errors && !date.touched && f.submitted)}" />
-                    <button class=" btn btn-outline-secondary bi bi-calendar3" type="button"><i class="fa fa-calendar-o"
-                            (click)="dp.toggle()"></i></button>
+
 
                     <div class="invalid-feedback" *ngIf="!date.touched">
                         Date is required
