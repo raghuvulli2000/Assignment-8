@@ -1,5 +1,7 @@
 import { Input, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { BackendApiService } from 'src/app/services/backend-api.service';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { FormGroup, FormControl, FormArray, Validators, NgForm } from '@angular/forms';
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
@@ -7,12 +9,13 @@ import { BackendApiService } from 'src/app/services/backend-api.service';
    encapsulation: ViewEncapsulation.None
 })
 export class DetailsComponent implements OnInit {
+  	closeResult = '';
  @Input() detailData: any;
  @Input() reviewsData: any;
  filteredData: any[][] = [];
 mapOptions: google.maps.MapOptions;
 marker;
-  constructor(private backendapi: BackendApiService) { }
+  constructor(private backendapi: BackendApiService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     console.log(this.detailData.coordinates.latitude);
@@ -23,23 +26,28 @@ marker;
 this.marker = {
    position: { lat: this.detailData.coordinates.latitude, lng: this.detailData.coordinates.longitude },
 }
-
-     var combine = "";
+  if(this.detailData.location && this.detailData.location.display_address){
+ this.filteredData.push(["Address", this.detailData.location.display_address.join(" ")]);
+  }
+  if(this.detailData.categories){
+         var combine = "";
   var categories = this.detailData.categories;
     for (var i = 0; i < categories.length - 1; i++) {
     combine += categories[i].title + " | ";
+   
   }
-  var status = "Closed";
-  if(this.detailData.hours[0].is_open_now){
+ combine += categories[categories.length - 1].title;
+this.filteredData.push(["Category", combine]);
+  }
+    var status = "Closed";
+  if(this.detailData.hours && this.detailData.hours[0].is_open_now){
     status = "Open Now"
   }
- 
-
-  combine += categories[categories.length - 1].title;
- this.filteredData.push(["Address", this.detailData.location.display_address.join(" ")]);
-this.filteredData.push(["Category", combine]);
+  if(this.detailData.display_phone)
 this.filteredData.push(["Phone", this.detailData.display_phone]);
+if(this.detailData.price){
 this.filteredData.push(["Price range", this.detailData.price]);
+}
 this.filteredData.push(["Status", status]);
 //this.filteredData.push(["Visit Yelp For More", this.detailData.url]);
    console.log(this.filteredData);
@@ -52,4 +60,37 @@ filterData(){
     this.backendapi.backEvent.emit();
   }
 
+
+	open(content) {
+		this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
+			(result) => {
+				this.closeResult = `Closed with: ${result}`;
+			},
+			(reason) => {
+				this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+			},
+		);
+	}
+
+	private getDismissReason(reason: any): string {
+		if (reason === ModalDismissReasons.ESC) {
+			return 'by pressing ESC';
+		} else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+			return 'by clicking on a backdrop';
+		} else {
+			return `with: ${reason}`;
+		}
+	}
+    validate(form1: NgForm){
+   // var form = document.getElementsByClassName('needs-validation')[0] as HTMLFormElement;
+    // if (form.checkValidity() === false) {
+    //   event.preventDefault();
+    //   event.stopPropagation();
+    // }
+   // form.classList.add('was-validated');
+    console.log(form1);
+  }
+
 }
+
+

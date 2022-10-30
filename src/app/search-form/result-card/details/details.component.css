@@ -6,24 +6,20 @@
 
 }
 
+.btn-center {
+    text-align: center;
+}
+
 .flex-div {
-
-
-
-
-
     padding: 5px;
     width: 45%;
     height: auto;
     margin: 10px;
-
-
-
     text-align: center;
 
 }
 
-p {
+.flex-div p {
     margin: 0
 }
 
@@ -45,4 +41,38 @@ p {
 
 .white {
     background-color: white;
+    width: 45rem;
+}
+
+.center {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.center p {
+    margin: 0;
+}
+
+.white .map-container {
+    align-items: center;
+}
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+    filter: invert(1);
+}
+
+.right-inner-addon {
+    position: relative;
+}
+
+.right-inner-addon input {
+    padding-right: 30px;
+}
+
+.right-inner-addon span span i {
+
+    position: absolute;
+    right: 0px;
+    padding: 10px 12px;
 }

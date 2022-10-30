@@ -1,18 +1,54 @@
-<div class="container">
+<div class="top">
     <span style='font-size:50px;' (click)="goBack()">&#8592;</span>
+    <div class="row white">
+        <div *ngFor="let item of filteredData; let i = index" class="col-md-6 col-sm-12 center">
+            <p>{{item[0]}}</p>
+            <p>{{item[1]}}</p>
+        </div>
+        <div class="col-md-6 col-sm-12 center">
+            <p>Visit Yelp For More</p>
+            <a [href]="detailData.url">Business Link</a>
+        </div>
+        <div class="col-12 btn-center">
+            <button type="button" class="btn btn-danger m-4 text-btn-size" (click)="open(content)">Reserve
+                Now</button>
+        </div>
 
-    <br>
-    <br>
-    <br>
-    <div class="top white">
 
-        <google-map [width]="800" [height]="600" [options]="mapOptions">
-            <map-marker [position]="marker.position"></map-marker>
-        </google-map>
+
+        <div class="col-12 btn-center">
+
+            <ngb-carousel [showNavigationIndicators]="false" interval="2000">
+                <ng-template ngbSlide *ngFor="let photo of detailData.photos">
+                    <div class="picsum-img-wrapper">
+                        <img [src]="photo" width="300px" height="300px" alt="Angular Carousel 1">
+                    </div>
+                </ng-template>
+            </ngb-carousel>
+
+
+            <br><br>
+
+        </div>
+
+    </div>
+
+</div>
+<br><br>
+<div class="container">
+
+
+    <div class="top">
+        <div class="col-12  white ">
+            <google-map [width]="null" [options]="mapOptions">
+                <map-marker [position]="marker.position"></map-marker>
+            </google-map>
+        </div>
+
     </div>
 </div>
 <br>
-<div class="top white">
+<!-- <div class="top white">
     <div class="data-container">
         <div *ngFor="let item of filteredData" class="flex-div">
             <p>{{item[0]}}</p>
@@ -24,23 +60,78 @@
         </div>
 
     </div>
-</div>
+</div> -->
+
+<br><br>
 <div class="container">
-    <div class="top white">
-        <table class="table table-striped">
-            <tbody>
-                <tr *ngFor="let object of reviewsData; let i = index">
-                    <td>
-                        <p>{{object.user.name}}<br>
-                            Rating: {{object.rating}}/5</p>
+    <div class="top">
+        <div class="white">
+            <table class="table table-striped">
+                <tbody>
+                    <tr *ngFor="let object of reviewsData; let i = index">
+                        <td>
+                            <p>{{object.user.name}}<br>
+                                Rating: {{object.rating}}/5</p>
+                            <p>{{object.text}}</p>
 
-
-                        <p>{{object.text}}</p>
-
-                        <p>{{object.time_created.slice(0,10)}}</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                            <p>{{object.time_created.slice(0,10)}}</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
+
 </div>
+
+<!-- Modal -->
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Reservation form</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <form class="row g-3 needs-validation" novalidate (ngSubmit)="validate(f)" #f="ngForm">
+            <div class="col-mb-3">
+                <label for="validationCustom05" class="form-label">Email</label>
+                <input type="text" #email="ngModel" class="form-control" id="validationCustom05" required email ngModel
+                    name="email"
+                    [ngClass]="{'is-invalid': (email.errors && (email.touched || email.dirty)) || (email.errors && !email.touched && f.submitted) }">
+                <div class="invalid-feedback" *ngIf="!email.touched">
+                    Email is required
+                </div>
+                <div class="invalid-feedback" *ngIf="email.touched">
+                    Email must be a vaild email address
+                </div>
+            </div>
+            <div class="col-mb-3">
+                <label for="dateOfBirth">Date</label>
+                <div class="input-group right-inner-addon">
+
+                    <input id="dateOfBirth validationCustom05" #date="ngModel" class="form-control" name="dp"
+                        ngbDatepicker #dp="ngbDatepicker" required date ngModel
+                        [ngClass]="{'is-invalid': (date.errors && (date.touched || date.dirty)) ||  (date.errors && !date.touched && f.submitted)}" />
+                    <button class=" btn btn-outline-secondary bi bi-calendar3" type="button"><i class="fa fa-calendar-o"
+                            (click)="dp.toggle()"></i></button>
+
+                    <div class="invalid-feedback" *ngIf="!date.touched">
+                        Date is required
+                    </div>
+
+                    <div class="invalid-feedback" *ngIf="date.touched">
+                        Date must be a vaild
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-12">
+                <button class="btn btn-primary" type="submit">Submit form</button>
+            </div>
+
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+    </div>
+</ng-template>
