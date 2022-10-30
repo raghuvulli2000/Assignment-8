@@ -1,7 +1,8 @@
-import { Input, Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Input, Component, OnInit, ViewEncapsulation, ElementRef, ViewChild } from '@angular/core';
 import { BackendApiService } from 'src/app/services/backend-api.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl, FormArray, Validators, NgForm } from '@angular/forms';
+import { ReservationsService } from 'src/app/services/reservations.service';
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
@@ -10,12 +11,16 @@ import { FormGroup, FormControl, FormArray, Validators, NgForm } from '@angular/
 })
 export class DetailsComponent implements OnInit {
   	closeResult = '';
+@ViewChild('email') emailIp:NgbModal;
+@ViewChild('date') dateIp:NgbModal;
  @Input() detailData: any;
  @Input() reviewsData: any;
  filteredData: any[][] = [];
 mapOptions: google.maps.MapOptions;
 marker;
-  constructor(private backendapi: BackendApiService, private modalService: NgbModal) { }
+openModalInstance:any;
+resformData:{"id":string, "name":string,"date":any, "time":string, "email":string};
+  constructor(private backendapi: BackendApiService, private modalService: NgbModal, private resService: ReservationsService) { }
 
   ngOnInit(): void {
     console.log(this.detailData.coordinates.latitude);
@@ -52,6 +57,13 @@ this.filteredData.push(["Status", status]);
 //this.filteredData.push(["Visit Yelp For More", this.detailData.url]);
    console.log(this.filteredData);
 
+   this.resformData = {
+  "id": this.detailData.id,
+  "name": this.detailData.name,
+  "date":"",
+  "time":"",
+  "email":"",
+};
   }
 filterData(){
 
@@ -62,6 +74,7 @@ filterData(){
 
 
 	open(content) {
+    this.openModalInstance = content;
 		this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
 			(result) => {
 				this.closeResult = `Closed with: ${result}`;
@@ -88,7 +101,13 @@ filterData(){
     //   event.stopPropagation();
     // }
    // form.classList.add('was-validated');
-    console.log(form1);
+   console.log(form1);
+   if(form1.form.status === "VALID"){
+    
+  console.log(this.resformData);
+  this.resService.appendData(this.resformData);
+  this.modalService.dismissAll()
+   }
   }
 
 }

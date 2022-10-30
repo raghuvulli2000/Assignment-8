@@ -94,8 +94,8 @@
         <form class="row g-3 needs-validation" novalidate (ngSubmit)="validate(f)" #f="ngForm">
             <div class="col-mb-3">
                 <label for="validationCustom05" class="form-label">Email</label>
-                <input type="text" #email="ngModel" class="form-control" id="validationCustom05" required email ngModel
-                    name="email"
+                <input type="text" [(ngModel)]="resformData.email" #emailInput #email="ngModel" class="form-control"
+                    id="validationCustom05" required email ngModel name="email"
                     [ngClass]="{'is-invalid': (email.errors && (email.touched || email.dirty)) || (email.errors && !email.touched && f.submitted) }">
                 <div class="invalid-feedback" *ngIf="!email.touched">
                     Email is required
@@ -108,8 +108,8 @@
                 <label for="dateOfBirth">Date</label>
                 <div class="input-group right-inner-addon">
 
-                    <input id="dateOfBirth validationCustom05" #date="ngModel" class="form-control" name="dp"
-                        ngbDatepicker #dp="ngbDatepicker" required date ngModel
+                    <input #dateInput id="dateOfBirth validationCustom05" [(ngModel)]="resformData.date" #date="ngModel"
+                        class="form-control" name="dp" ngbDatepicker #dp="ngbDatepicker" required date ngModel
                         [ngClass]="{'is-invalid': (date.errors && (date.touched || date.dirty)) ||  (date.errors && !date.touched && f.submitted)}" />
                     <button class=" btn btn-outline-secondary bi bi-calendar3" type="button"><i class="fa fa-calendar-o"
                             (click)="dp.toggle()"></i></button>
