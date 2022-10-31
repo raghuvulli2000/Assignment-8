@@ -17,7 +17,7 @@ export class BackendApiService {
     console.log("Fetch Worked");
     console.log(data);
     var searchParams = new URLSearchParams(data);
-    var uri = "http://localhost:5000" + "/route?" + searchParams.toString();
+    var uri = "http://localhost:3000" + "/route?" + searchParams.toString();
     console.log(uri);
     this.http.get(uri).subscribe((data:any)=>{
      // console.log(data.businesses)
@@ -30,13 +30,13 @@ export class BackendApiService {
   fetchIdDetail(id: string){
     
     console.log(id);
-    var trl = "http://localhost:5000" + "/businessid?id=" + id;
+    var trl = "http://localhost:3000" + "/businessid?id=" + id;
     console.log(trl);
     this.http.get(trl).subscribe((data)=>{
       console.log(data);
       this.detailsFetched.emit(data);
     });
-    var prl = "http://localhost:5000" + "/businessid?id=" + id + "/reviews";
+    var prl = "http://localhost:3000" + "/businessid?id=" + id + "/reviews";
     console.log(prl);
     this.http.get(prl).subscribe((data:any)=>{
       console.log(data.reviews);
