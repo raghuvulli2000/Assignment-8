@@ -10,6 +10,8 @@ export class BackendApiService {
   detailsFetched = new EventEmitter<any>();
   reviewsFetched = new EventEmitter<[any]>();
   backEvent = new EventEmitter();
+  //server: string = "https://angular-node-business-app.wl.r.appspot.com/options?id=";
+  server: string = "http://localhost:3000/options?id=";
 
   constructor(private http: HttpClient) { }
 
@@ -17,7 +19,7 @@ export class BackendApiService {
     console.log("Fetch Worked");
     console.log(data);
     var searchParams = new URLSearchParams(data);
-    var uri = "http://localhost:3000" + "/route?" + searchParams.toString();
+    var uri = "https://angular-node-business-app.wl.r.appspot.com" + "/route?" + searchParams.toString();
     console.log(uri);
     this.http.get(uri).subscribe((data:any)=>{
      // console.log(data.businesses)
@@ -27,16 +29,28 @@ export class BackendApiService {
     })
   }
 
+
+  fetchOptions(id){
+    return this.http.get(this.server + id, {
+  headers: {
+    'Accept': 'application/json',
+    'Authorization': `Bearer ${'1Qfvd-mBsP9XSvBJ8L3aAHDRYxp2owcYjtvu8JgvxI3mM_Jf7iukKAWwHt-0vfNkCFUV7CGKk2y_izbfNIIoI-j16ej7SR7efBnig2XMczkSCijr3jerfbXMKlw3Y3Yx'}`,
+  }
+})
+
+  }
+
+
   fetchIdDetail(id: string){
     
     console.log(id);
-    var trl = "http://localhost:3000" + "/businessid?id=" + id;
+    var trl = "https://angular-node-business-app.wl.r.appspot.com" + "/businessid?id=" + id;
     console.log(trl);
     this.http.get(trl).subscribe((data)=>{
       console.log(data);
       this.detailsFetched.emit(data);
     });
-    var prl = "http://localhost:3000" + "/businessid?id=" + id + "/reviews";
+    var prl = "https://angular-node-business-app.wl.r.appspot.com" + "/businessid?id=" + id + "/reviews";
     console.log(prl);
     this.http.get(prl).subscribe((data:any)=>{
       console.log(data.reviews);

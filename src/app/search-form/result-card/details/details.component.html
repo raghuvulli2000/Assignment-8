@@ -1,63 +1,121 @@
-<div class="top">
+<div class="container white">
     <span style='font-size:50px;' (click)="goBack()">&#8592;</span>
+    <mat-tab-group mat-stretch-tabs>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                Business Details
+            </ng-template>
+            <div class="top">
 
-    <div class="row white">
+                <div class="row">
 
-        <div class="col-12 center">
-            <br>
-            <h4>{{this.detailData.name}}</h4>
-        </div>
-        <br>
-        <div *ngFor="let item of filteredData; let i = index" class="col-md-6 col-sm-12 center">
-            <p>{{item[0]}}</p>
-            <p>{{item[1]}}</p>
-        </div>
-        <div class="col-md-6 col-sm-12 center">
-            <p>Visit Yelp For More</p>
-            <a [href]="detailData.url">Business Link</a>
-        </div>
-        <div class="col-12 btn-center">
-            <button *ngIf="!find_res()" type="button" class="btn btn-danger m-4 text-btn-size"
-                (click)="open(content)">Reserve
-                Now</button>
-            <button *ngIf="find_res()" type="button" class="btn btn-primary m-4 text-btn-size"
-                (click)="cancelReservation()">Cancel Reservation</button>
-        </div>
-
-
-
-        <div class="col-12 btn-center">
-
-            <ngb-carousel [showNavigationIndicators]="false" interval="2000">
-                <ng-template ngbSlide *ngFor="let photo of detailData.photos">
-                    <div class="picsum-img-wrapper">
-                        <img [src]="photo" width="300px" height="300px" alt="Angular Carousel 1">
+                    <div class="col-12 center">
+                        <br>
+                        <h4>{{this.detailData.name}}</h4>
                     </div>
-                </ng-template>
-            </ngb-carousel>
+                    <br>
+                    <div *ngFor="let item of filteredData; let i = index" class="col-md-6 col-sm-12 center">
+                        <p>{{item[0]}}</p>
+                        <p>{{item[1]}}</p>
+                    </div>
+                    <div class="col-md-6 col-sm-12 center">
+                        <p>Visit Yelp For More</p>
+                        <a [href]="detailData.url">Business Link</a>
+                    </div>
+                    <div class="col-12 btn-center">
+                        <button *ngIf="!find_res()" type="button" class="btn btn-danger m-4 text-btn-size"
+                            (click)="open(content)">Reserve
+                            Now</button>
+                        <button *ngIf="find_res()" type="button" class="btn btn-primary m-4 text-btn-size"
+                            (click)="cancelReservation()">Cancel Reservation</button>
+                    </div>
 
+
+
+                    <div class="col-12 btn-center">
+
+                        <ngb-carousel [showNavigationIndicators]="false" interval="2000">
+                            <ng-template ngbSlide *ngFor="let photo of detailData.photos">
+                                <div class="picsum-img-wrapper">
+                                    <img [src]="photo" width="300px" height="300px" alt="Angular Carousel 1">
+                                </div>
+                            </ng-template>
+                        </ngb-carousel>
+
+
+                        <br><br>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </mat-tab>
+
+        <mat-tab>
+            <ng-template mat-tab-label>
+                Map Location
+            </ng-template>
+            <br><br>
+            <div class="container">
+
+
+                <div class="top">
+                    <div class="col-12">
+                        <google-map [width]="null" [options]="mapOptions">
+                            <map-marker [position]="marker.position"></map-marker>
+                        </google-map>
+                    </div>
+
+                </div>
+            </div>
+            <br>
+        </mat-tab>
+
+        <mat-tab>
+            <ng-template mat-tab-label>
+                Reviews
+            </ng-template>
 
             <br><br>
+            <div class="container">
+                <div class="top">
 
-        </div>
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr *ngFor="let object of reviewsData; let i = index">
+                                <td>
+                                    <p>{{object.user.name}}<br>
+                                        Rating: {{object.rating}}/5</p>
+                                    <p>{{object.text}}</p>
 
-    </div>
+                                    <p>{{object.time_created.slice(0,10)}}</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+        </mat-tab>
+    </mat-tab-group>
 
 </div>
-<br><br>
-<div class="container">
 
 
-    <div class="top">
-        <div class="col-12  white ">
-            <google-map [width]="null" [options]="mapOptions">
-                <map-marker [position]="marker.position"></map-marker>
-            </google-map>
-        </div>
 
-    </div>
-</div>
-<br>
+
+
+
+
+
+
+
+
+
+
+
 <!-- <div class="top white">
     <div class="data-container">
         <div *ngFor="let item of filteredData" class="flex-div">
@@ -72,27 +130,11 @@
     </div>
 </div> -->
 
-<br><br>
-<div class="container">
-    <div class="top">
-        <div class="white">
-            <table class="table table-striped">
-                <tbody>
-                    <tr *ngFor="let object of reviewsData; let i = index">
-                        <td>
-                            <p>{{object.user.name}}<br>
-                                Rating: {{object.rating}}/5</p>
-                            <p>{{object.text}}</p>
 
-                            <p>{{object.time_created.slice(0,10)}}</p>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
 
-</div>
+
+
+
 
 <!-- Modal -->
 <ng-template #content let-modal>

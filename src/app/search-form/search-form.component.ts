@@ -16,6 +16,8 @@ export class SearchFormComponent implements OnInit {
   searchForm: FormGroup;
   longitude: string;
   latitude: string;
+  //server: string = "https://angular-node-business-app.wl.r.appspot.com/options?id=";
+  server: string = "http://localhost:3000/options?id=";
   @ViewChild('locationField') loc:ElementRef;
 
   constructor(private http: HttpClient, private backendApi: BackendApiService) { }
@@ -23,37 +25,29 @@ export class SearchFormComponent implements OnInit {
   ngOnInit(): void {
 
     this.initForm();
-
-
-  //   console.log(this.searchForm);
-  //   console.log(this.searchForm.get("keyword"));
-  //      this.searchForm.get("keyword").valueChanges.subscribe((data) => {
-  //   console.log(data);
-  //  })
-
-
      this.searchForm.get("keyword").valueChanges
       .pipe(
         filter(res => {
           this.options = [];
-          return res !== null && (res.length == 0 || res.length >= 2)
+          console.log("res:" + res);
+          if(res && res.length == 0){
+            setTimeout(()=>{console.log("reset");this.options = []}, 1000);
+          }
+          return res !== null && (res.length==0 || res.length >= 2)
         }),
         distinctUntilChanged(),
         debounceTime(1000),
           tap(() => {
          
           this.options = [];
-          this.isLoading = true;
+          this.isLoading = true;  
         }),
         //https://second-python-flask-8639972999.wl.r.appspot.com/route?term=biryani&latitude=33.8658484&longitude=-118.0831212&radius=16093&category=food
-        switchMap(value => this.http.get('http://localhost:3000/options?id=' + value, {
-  headers: {
-    'Accept': 'application/json',
-    'Authorization': `Bearer ${'1Qfvd-mBsP9XSvBJ8L3aAHDRYxp2owcYjtvu8JgvxI3mM_Jf7iukKAWwHt-0vfNkCFUV7CGKk2y_izbfNIIoI-j16ej7SR7efBnig2XMczkSCijr3jerfbXMKlw3Y3Yx'}`,
-  }
-})
-  .pipe(
+       // this.backendApi.fetchOptions(value)
+        switchMap (value =>    this.backendApi.fetchOptions(value)
+.pipe(
             finalize(() => {
+
               this.isLoading = false
             }),
           )

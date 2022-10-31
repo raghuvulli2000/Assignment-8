@@ -61,6 +61,7 @@ app.get("/route", function (request, response) {
 });
 
 app.get("/businessid", function (request, response) {
+  console.log("In detail route");
   var Id = request.query.id;
   console.log(Id);
   const url = "https://api.yelp.com/v3/businesses/" + Id;
@@ -79,10 +80,14 @@ app.get("/options", function (request, response) {
   const url = "https://api.yelp.com/v3/autocomplete?text=" + Id;
   console.log(url);
 
-  axios(url, config).then((resp) => {
-    // console.log(resp.data);
-    response.end(JSON.stringify(resp.data));
-  });
+  axios(url, config)
+    .then((resp) => {
+      // console.log(resp.data);
+      response.end(JSON.stringify(resp.data));
+    })
+    .catch(function (error) {
+      response.end();
+    });
 });
 
 app.listen(port, () => {

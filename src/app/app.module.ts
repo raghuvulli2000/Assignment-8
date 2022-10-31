@@ -7,7 +7,7 @@ import { SearchFormComponent } from './search-form/search-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GoogleMapsModule } from '@angular/google-maps'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { MatTabsModule } from '@angular/material/tabs';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
@@ -73,7 +73,8 @@ import { ReservationComponent } from './reservation/reservation.component';
     MdbScrollspyModule,
     MdbTabsModule,
     MdbTooltipModule,
-    MdbValidationModule
+    MdbValidationModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
