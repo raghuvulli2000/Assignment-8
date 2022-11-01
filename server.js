@@ -28,6 +28,10 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname + "/dist/angular-project/index.html"));
 });
 
+app.get("/search", (req, res) => {
+  res.sendFile(path.join(__dirname + "/dist/angular-project/index.html"));
+});
+
 const config = {
   headers: {
     Authorization: `Bearer 1Qfvd-mBsP9XSvBJ8L3aAHDRYxp2owcYjtvu8JgvxI3mM_Jf7iukKAWwHt-0vfNkCFUV7CGKk2y_izbfNIIoI-j16ej7SR7efBnig2XMczkSCijr3jerfbXMKlw3Y3Yx`,

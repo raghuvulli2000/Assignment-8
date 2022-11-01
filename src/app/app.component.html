@@ -1,9 +1,15 @@
-<nav>
-    <div class="row">
-        <ul class="nav">
-            <li><a routerLink="/search">Search</a></li>
-            <li><a routerLink="/bookings">Bookings</a></li>
-        </ul>
-    </div>
-</nav>
+<div class="container-fluid">
+    <nav>
+        <div class="row">
+            <div class="col-xs-12 ">
+                <ul class="nav pull-right">
+                    <li class="nav-ele " routerLinkActive="active"><a routerLink="/search">Search</a></li>
+                    <li class="nav-ele" routerLinkActive="active"><a routerLink="/bookings">My Bookings</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+</div>
+
 <router-outlet></router-outlet>
