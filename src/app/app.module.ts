@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import {Routes, RouterModule} from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchFormComponent } from './search-form/search-form.component';
@@ -34,7 +34,15 @@ import { MdbTooltipModule } from 'mdb-angular-ui-kit/tooltip';
 import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
 import { ReservationComponent } from './reservation/reservation.component';
 
-
+const appRoutes: Routes = [
+  { path: "search", component: SearchFormComponent },
+  { path: "bookings", component: ReservationComponent},
+  {
+    path: "",
+    redirectTo: '/search',
+    pathMatch: 'full'
+  }
+];
 
 @NgModule({
   declarations: [
@@ -74,7 +82,9 @@ import { ReservationComponent } from './reservation/reservation.component';
     MdbTabsModule,
     MdbTooltipModule,
     MdbValidationModule,
-    MatTabsModule
+    MatTabsModule,
+    RouterModule.forRoot(appRoutes),
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
