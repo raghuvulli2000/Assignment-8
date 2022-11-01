@@ -102,12 +102,6 @@ filterData(){
    alert("Reservation Cancelled!")
   }
     validate(form1: NgForm){
-   // var form = document.getElementsByClassName('needs-validation')[0] as HTMLFormElement;
-    // if (form.checkValidity() === false) {
-    //   event.preventDefault();
-    //   event.stopPropagation();
-    // }
-   // form.classList.add('was-validated');
    console.log(form1);
    if(form1.form.status === "VALID"){
     
@@ -115,6 +109,14 @@ filterData(){
   this.resService.appendData(this.resformData);
   alert("Reservation Created!");
   this.modalService.dismissAll()
+   }
+   else{
+    
+   const invalidElement = document.querySelectorAll('.ng-invalid')[1];
+  (<HTMLInputElement>invalidElement).focus();
+  if((<HTMLInputElement>invalidElement).name == "email" || (<HTMLInputElement>invalidElement).name == "date"){
+    this.resformData[(<HTMLInputElement>invalidElement).name] = "";
+  }
    }
   }
 

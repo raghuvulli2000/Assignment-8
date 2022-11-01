@@ -11,7 +11,7 @@ export class BackendApiService {
   reviewsFetched = new EventEmitter<[any]>();
   backEvent = new EventEmitter();
   //server: string = "https://angular-node-business-app.wl.r.appspot.com/options?id=";
-  server: string = "http://localhost:3000/options?id=";
+  server: string = "https://angular-node-business-app.wl.r.appspot.com/options?id=";
 
   constructor(private http: HttpClient) { }
 
@@ -31,6 +31,7 @@ export class BackendApiService {
 
 
   fetchOptions(id){
+    console.log("Fetching Options");
     return this.http.get(this.server + id, {
   headers: {
     'Accept': 'application/json',
