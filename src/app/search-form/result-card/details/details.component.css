@@ -41,7 +41,7 @@
 
 .white {
     background-color: white;
-    width: 45rem;
+    width: 80vw;
 }
 
 .center {
@@ -75,4 +75,31 @@
     position: absolute;
     right: 0px;
     padding: 10px 12px;
+}
+
+.mat-tab-body-content {
+
+    overflow: hidden !important;
+}
+
+.fa-facebook-square {
+    color: #3b5998;
+
+    background-size: 55%;
+    background-position: 70% 0;
+    background-repeat: no-repeat;
+    transform: scale(2);
+    margin: 20px;
+    margin-left: 9px !important;
+
+}
+
+.fa-twitter-square {
+
+    background-size: 55%;
+    background-position: 70% 0;
+    background-repeat: no-repeat;
+    transform: scale(2);
+
+    margin: 20px;
 }

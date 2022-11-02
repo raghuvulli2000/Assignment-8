@@ -33,6 +33,8 @@ import { MdbTabsModule } from 'mdb-angular-ui-kit/tabs';
 import { MdbTooltipModule } from 'mdb-angular-ui-kit/tooltip';
 import { MdbValidationModule } from 'mdb-angular-ui-kit/validation';
 import { ReservationComponent } from './reservation/reservation.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 const appRoutes: Routes = [
   { path: "search", component: SearchFormComponent },
@@ -84,6 +86,7 @@ const appRoutes: Routes = [
     MdbValidationModule,
     MatTabsModule,
     RouterModule.forRoot(appRoutes),
+    FontAwesomeModule,
     
   ],
   providers: [],
