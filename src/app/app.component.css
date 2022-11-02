@@ -16,3 +16,21 @@
     border: 2px solid black;
     border-radius: 15px;
 }
+
+.bg-img {
+    /* background-image: url("../assets/city.jpg"); */
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: 37% 105%;
+    z-index: -100;
+    filter: saturate(200%) opacity(50%) brightness(70%) contrast(200%) hue-rotate(15deg);
+    position: absolute;
+}
+
+.scroll-container {
+    max-height: 100vh;
+    overflow-y: auto;
+    z-index: 100;
+
+}
