@@ -16,10 +16,12 @@ export class DetailsComponent implements OnInit {
  @Input() detailData: any;
  @Input() reviewsData: any;
  filteredData: any[][] = [];
+ hours: any = [10,11,12,13,14,15,16,17];
+mins: any = ["00","15","30","45"];
 mapOptions: google.maps.MapOptions;
 marker;
 openModalInstance:any;
-resformData:{"id":string, "name":string,"date":any, "time":string, "email":string};
+resformData:{"id":string, "name":string,"date":any, "hour":string, "minutes":string, "email":string};
   constructor(private backendapi: BackendApiService, private modalService: NgbModal, private resService: ReservationsService) { }
 
   ngOnInit(): void {
@@ -61,7 +63,8 @@ this.filteredData.push(["Status", status]);
   "id": this.detailData.id,
   "name": this.detailData.name,
   "date":"",
-  "time":"",
+  "hour":"",
+  "minutes":"",
   "email":"",
 };
   }

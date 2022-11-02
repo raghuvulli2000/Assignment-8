@@ -4,10 +4,10 @@ import { Injectable, EventEmitter } from '@angular/core';
   providedIn: 'root'
 })
 export class ReservationsService {
-  resData: Array<{"id":string, "name":string, "date":any, "time":string, "email":string}> = [];
-  changeDataEvent = new EventEmitter<Array<{"id":string, "name":string, "date":any, "time":string, "email":string}>>();
+  resData: Array<{"id":string, "name":string, "date":any, "hour":string, "minutes":string, "email":string}> = [];
+  changeDataEvent = new EventEmitter<Array<{"id":string, "name":string, "date":any, "hour":string, "minutes":string, "email":string}>>();
   constructor() {} 
-  appendData(data: {"id":string,  "name":string,"date":any, "time":string, "email":string}){
+  appendData(data: {"id":string,  "name":string,"date":any, "hour":string, "minutes":string, "email":string}){
     this.resData.push(data);
     this.changeDataEvent.emit(this.resData.slice());
   }

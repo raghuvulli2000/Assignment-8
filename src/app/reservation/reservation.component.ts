@@ -6,13 +6,14 @@ import { ReservationsService } from '../services/reservations.service';
   styleUrls: ['./reservation.component.css']
 })
 export class ReservationComponent implements OnInit {
-  resData: Array<{"id":string, "name":string, "date":any, "time":string, "email":string}> = [];
+  resData: Array<{"id":string, "name":string, "date":any, "hour":string, "minutes":string, "email":string}> = [];
   constructor(private resService: ReservationsService) { }
 
   ngOnInit(): void {
     this.resData = this.resService.resData;
-    this.resService.changeDataEvent.subscribe((data:Array<{"id":string,  "name":string,"date":any, "time":string, "email":string}>)=>{
+    this.resService.changeDataEvent.subscribe((data:Array<{"id":string,  "name":string,"date":any, "hour":string, "minutes":string, "email":string}>)=>{
       this.resData = this.resService.resData;
+      console.log(this.resData);
     });
   }
 

@@ -155,35 +155,21 @@
                 <label for="dateOfBirth">Time</label>
                 <div class="input-group">
                     <div class="col-2 p-6">
-                        <select class="form-select" id="sel1" name="sellist1" required formControlName="category">
-                            <option value="All">Default</option>
-                            <option value="arts">Arts & Enteratinment</option>
-                            <option value="health">Health & Medical</option>
-                            <option value="hotelstravel">Hotel & Travel</option>
-                            <option value="food">Food</option>
-                            <option value="professional">Professional Services</option>
+                        <select #hour="ngModel" ngModel class="form-select form-control" id="sel1" name="sellist1"
+                            required [(ngModel)]="resformData.hour" name="hour"
+                            [ngClass]="{'is-invalid': (hour.errors && (hour.touched || hour.dirty)) ||  (hour.errors && !hour.touched && f.submitted)}">
+                            <option *ngFor="let hour of hours" [value]="hour">{{hour}}</option>
                         </select>
                     </div>
                     <div class="p-6 center">
                         &nbsp; : &nbsp;
                     </div>
                     <div class="col-2">
-                        <select class="form-select" id="sel1" name="sellist1" required formControlName="category">
-                            <option value="All">Default</option>
-                            <option value="arts">Arts & Enteratinment</option>
-                            <option value="health">Health & Medical</option>
-                            <option value="hotelstravel">Hotel & Travel</option>
-                            <option value="food">Food</option>
-                            <option value="professional">Professional Services</option>
+                        <select #minutes="ngModel" ngModel class="form-select form-control" id="sel1" name="sellist1"
+                            required [(ngModel)]="resformData.minutes" name="minutes"
+                            [ngClass]="{'is-invalid': (minutes.errors && (minutes.touched || minutes.dirty)) ||  (minutes.errors && !minutes.touched && f.submitted)}">
+                            <option *ngFor="let min of mins" [value]="min">{{min}}</option>
                         </select>
-                    </div>
-
-                    <div class="invalid-feedback" *ngIf="!date.touched">
-                        Date is required
-                    </div>
-
-                    <div class="invalid-feedback" *ngIf="date.touched">
-                        Date must be a vaild
                     </div>
 
                 </div>

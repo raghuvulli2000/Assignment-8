@@ -1,6 +1,6 @@
 <div class="container">
     <div class="top">
-        <table class="table table-striped white">
+        <table class="table white">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -16,7 +16,7 @@
                     <th scope="row">{{i+1}}</th>
                     <td>{{object.name}}</td>
                     <td>{{object.date.year+"-"+object.date.month+"-"+object.date.day}}</td>
-                    <td>{{object.time}}</td>
+                    <td>{{object.hour + ":" + object.minutes}}</td>
                     <td>{{object.email}}</td>
                     <td (click)="deleteReservation(object.id)"><i class="fa fa-trash-o" aria-hidden="true"></i></td>
                 </tr>
