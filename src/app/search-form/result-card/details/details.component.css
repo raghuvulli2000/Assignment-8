@@ -41,7 +41,12 @@
 
 .white {
     background-color: white;
-    width: 80vw;
+    width: 55vw;
+}
+
+.mat-tab-label-container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
 }
 
 .center {
@@ -94,7 +99,7 @@
 
 }
 
-.fa-twitter-square {
+.fa-twitter {
 
     background-size: 55%;
     background-position: 70% 0;
@@ -102,4 +107,17 @@
     transform: scale(2);
 
     margin: 20px;
+}
+
+.mat-tab-labels {
+
+    justify-content: center !important;
+    background-color: #ffc107 !important;
+}
+
+@media screen and (max-width: 480px) {
+    .white {
+        background-color: white;
+        width: 94vw;
+    }
 }

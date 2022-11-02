@@ -14,3 +14,27 @@ td,
 th {
     text-align: center;
 }
+
+img {
+    width: 100px;
+    height: 100px;
+}
+
+.white {
+    background-color: white;
+    width: 63vw;
+    border-radius: 2vh;
+}
+
+@media screen and (max-width: 480px) {
+    img {
+        width: 13vw;
+        height: 6vh;
+    }
+
+    .white {
+        background-color: white;
+        width: 94vw;
+        border-radius: 2vh;
+    }
+}

@@ -1,26 +1,28 @@
 <div class="container white">
-    <span style='font-size:50px;' (click)="goBack()">&#8592;</span>
-    <mat-tab-group mat-stretch-tabs>
+    <span style='font-size:30px;' (click)="goBack()">&#8592;</span>
+    <div class="col-12 center">
+
+        <h4>{{this.detailData.name}}</h4>
+    </div>
+
+    <mat-tab-group mat-tabs>
         <mat-tab>
             <ng-template mat-tab-label>
                 Business Details
             </ng-template>
             <div class="top">
 
-                <div class="row">
+                <div class="row mt-4 pt-2">
 
-                    <div class="col-12 center">
-                        <br>
-                        <h4>{{this.detailData.name}}</h4>
-                    </div>
+
                     <br>
                     <div *ngFor="let item of filteredData; let i = index" class="col-md-6 col-sm-12 center">
-                        <p>{{item[0]}}</p>
+                        <h5>{{item[0]}}</h5>
                         <p>{{item[1]}}</p>
                     </div>
-                    <div class="col-md-6 col-sm-12 center">
-                        <p>Visit Yelp For More</p>
-                        <a [href]="detailData.url">Business Link</a>
+                    <div class=" col-md-6 col-sm-12 center">
+                        <h5>Visit Yelp For More</h5>
+                        <a [href]="detailData.url" target="_blank">Business Link</a>
                     </div>
 
                     <div class="col-12 btn-center">
@@ -32,15 +34,13 @@
                     </div>
                     <div class="col-12 btn-center">
                         <label>Share on:</label>
-                        <i class="fa fa-twitter-square" style="color:rgb(74, 188, 233)"></i>
+                        <i class="fa fa-twitter" aria-hidden="true" style="color:rgb(74, 188, 233)"></i>
+
                         <i class="fa fa-facebook-square"></i>
 
                     </div>
 
-
-
                     <div class="col-12 btn-center">
-
                         <ngb-carousel [showNavigationIndicators]="false" interval="2000">
                             <ng-template ngbSlide *ngFor="let photo of detailData.photos">
                                 <div class="picsum-img-wrapper">
@@ -48,14 +48,9 @@
                                 </div>
                             </ng-template>
                         </ngb-carousel>
-
-
                         <br><br>
-
                     </div>
-
                 </div>
-
             </div>
         </mat-tab>
 
@@ -107,7 +102,6 @@
             </div>
         </mat-tab>
     </mat-tab-group>
-
 </div>
 
 
@@ -154,6 +148,49 @@
 
                 </div>
             </div>
+
+
+
+            <div class="row-mb-3">
+                <label for="dateOfBirth">Time</label>
+                <div class="input-group">
+                    <div class="col-2 p-6">
+                        <select class="form-select" id="sel1" name="sellist1" required formControlName="category">
+                            <option value="All">Default</option>
+                            <option value="arts">Arts & Enteratinment</option>
+                            <option value="health">Health & Medical</option>
+                            <option value="hotelstravel">Hotel & Travel</option>
+                            <option value="food">Food</option>
+                            <option value="professional">Professional Services</option>
+                        </select>
+                    </div>
+                    <div class="p-6 center">
+                        &nbsp; : &nbsp;
+                    </div>
+                    <div class="col-2">
+                        <select class="form-select" id="sel1" name="sellist1" required formControlName="category">
+                            <option value="All">Default</option>
+                            <option value="arts">Arts & Enteratinment</option>
+                            <option value="health">Health & Medical</option>
+                            <option value="hotelstravel">Hotel & Travel</option>
+                            <option value="food">Food</option>
+                            <option value="professional">Professional Services</option>
+                        </select>
+                    </div>
+
+                    <div class="invalid-feedback" *ngIf="!date.touched">
+                        Date is required
+                    </div>
+
+                    <div class="invalid-feedback" *ngIf="date.touched">
+                        Date must be a vaild
+                    </div>
+
+                </div>
+            </div>
+
+
+
 
             <div class="col-12 center">
                 <button class="btn btn-danger" type="submit">Submit</button>
