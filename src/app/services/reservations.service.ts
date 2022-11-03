@@ -9,6 +9,7 @@ export class ReservationsService {
   constructor() {} 
   appendData(data: {"id":string,  "name":string,"date":any, "hour":string, "minutes":string, "email":string}){
     this.resData.push(data);
+    localStorage.setItem("resData", JSON.stringify(this.resData));
     this.changeDataEvent.emit(this.resData.slice());
   }
 
@@ -26,6 +27,7 @@ findItemForDetail(id:string){
     var index = this.resData.findIndex((e) => e.id==id);
     if(index != -1){
       this.resData.splice(index, 1);
+      localStorage.setItem("resData", JSON.stringify(this.resData));
        this.changeDataEvent.emit(this.resData.slice());
        return index;
     }

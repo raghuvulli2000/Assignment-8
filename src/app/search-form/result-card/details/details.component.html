@@ -16,7 +16,7 @@
 
 
                     <br>
-                    <div *ngFor="let item of filteredData; let i = index" class="col-md-6 col-sm-12 center">
+                    <div *ngFor="let item of getDetailData(); let i = index" class="col-md-6 col-sm-12 center">
                         <h5>{{item[0]}}</h5>
                         <p [ngStyle]="{'color': getColor(item[0])}">
                             {{item[1]}}</p>

@@ -16,6 +16,7 @@ export class DetailsComponent implements OnInit {
  @Input() detailData: any;
  @Input() reviewsData: any;
  filteredData: any[][] = [];
+ smallScreenFilterData: any[][] = [];
  hours: any = [10,11,12,13,14,15,16,17];
 mins: any = ["00","15","30","45"];
 mapOptions: google.maps.MapOptions;
@@ -34,8 +35,28 @@ resformData:{"id":string, "name":string,"date":any, "hour":string, "minutes":str
 this.marker = {
    position: { lat: this.detailData.coordinates.latitude, lng: this.detailData.coordinates.longitude },
 }
-  if(this.detailData.location && this.detailData.location.display_address){
+  
+//this.filteredData.push(["Visit Yelp For More", this.detailData.url]);
+   console.log(this.filteredData);
+
+
+this.filterData();
+
+
+this.smallScreenData();
+   this.resformData = {
+  "id": this.detailData.id,
+  "name": this.detailData.name,
+  "date":"",
+  "hour":"",
+  "minutes":"",
+  "email":"",
+};
+  }
+filterData(){
+if(this.detailData.location && this.detailData.location.display_address){
  this.filteredData.push(["Address", this.detailData.location.display_address.join(" ")]);
+ 
   }
   if(this.detailData.categories){
          var combine = "";
@@ -58,21 +79,43 @@ if(this.detailData.price){
 this.filteredData.push(["Price range", this.detailData.price]);
 }
 this.filteredData.push(["Status", status]);
-//this.filteredData.push(["Visit Yelp For More", this.detailData.url]);
-   console.log(this.filteredData);
+}
 
-   this.resformData = {
-  "id": this.detailData.id,
-  "name": this.detailData.name,
-  "date":"",
-  "hour":"",
-  "minutes":"",
-  "email":"",
-};
+
+smallScreenData(){
+  if(this.detailData.location && this.detailData.location.display_address){
+ this.smallScreenFilterData.push(["Address", this.detailData.location.display_address.join(" ")]);
+ 
   }
-filterData(){
+   if(this.detailData.display_phone)
+this.smallScreenFilterData.push(["Phone", this.detailData.display_phone]);
+
+    var status = "Closed";
+  if(this.detailData.hours && this.detailData.hours[0].is_open_now){
+    status = "Open Now"
+ 
+  }
+  this.smallScreenFilterData.push(["Status", status]);
+  if(this.detailData.categories){
+         var combine = "";
+  var categories = this.detailData.categories;
+    for (var i = 0; i < categories.length - 1; i++) {
+    combine += categories[i].title + " | ";
+   
+  }
+ combine += categories[categories.length - 1].title;
+this.smallScreenFilterData.push(["Category", combine]);
+  }
+
+ 
+if(this.detailData.price){
+this.smallScreenFilterData.push(["Price range", this.detailData.price]);
+}
 
 }
+
+
+
   goBack(){
     this.backendapi.backEvent.emit();
   }
@@ -124,7 +167,16 @@ filterData(){
   }
    }
   }
+
+  getDetailData(){
+    if(window.innerWidth < 400){
+      return this.smallScreenFilterData
+    }
+    return this.filteredData;
+  }
+
   getColor(item: string){
+    
    // console.log("item:" + item);
     if(item === "Status" && this.detailData.hours && this.detailData.hours[0].is_open_now){
       return "green";
