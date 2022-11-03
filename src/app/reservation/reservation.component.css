@@ -15,7 +15,16 @@ th {
     text-align: center;
 }
 
+
+
 .white {
     background-color: white;
+    width: 55vw;
+}
 
+@media screen and (max-width: 480px) {
+    .white {
+        background-color: white;
+        width: 94vw;
+    }
 }

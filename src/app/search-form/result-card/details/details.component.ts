@@ -21,6 +21,7 @@ mins: any = ["00","15","30","45"];
 mapOptions: google.maps.MapOptions;
 marker;
 openModalInstance:any;
+status_style : any =  {"color": "red"};
 resformData:{"id":string, "name":string,"date":any, "hour":string, "minutes":string, "email":string};
   constructor(private backendapi: BackendApiService, private modalService: NgbModal, private resService: ReservationsService) { }
 
@@ -49,6 +50,7 @@ this.filteredData.push(["Category", combine]);
     var status = "Closed";
   if(this.detailData.hours && this.detailData.hours[0].is_open_now){
     status = "Open Now"
+ 
   }
   if(this.detailData.display_phone)
 this.filteredData.push(["Phone", this.detailData.display_phone]);
@@ -122,7 +124,18 @@ filterData(){
   }
    }
   }
-
+  getColor(item: string){
+   // console.log("item:" + item);
+    if(item === "Status" && this.detailData.hours && this.detailData.hours[0].is_open_now){
+      return "green";
+    }
+    else if(item === "Status"){
+      return "red";
+    }
+    else{
+      return "";
+    }
+  }
 }
 
 
