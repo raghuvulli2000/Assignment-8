@@ -34,9 +34,15 @@
                     </div>
                     <div class="col-12 btn-center">
                         <label>Share on:</label>
-                        <i class="fa fa-twitter" aria-hidden="true" style="color:rgb(74, 188, 233)"></i>
+                        <a href="https://twitter.com/intent/tweet/?text=check {{detailData.name}} on Yelp. &amp;url={{detailData.url}}"
+                            target="_blank" rel="noopener" aria-label="Share on Twitter"><i class="fa fa-twitter"
+                                aria-hidden="true" style="color:rgb(74, 188, 233)"></i></a>
 
-                        <i class="fa fa-facebook-square"></i>
+                        <a href="http://www.facebook.com/sharer.php?u={{detailData.url}}" target="_blank" rel="noopener"
+                            aria-label="Share on Facebook">
+                            <i class="fa fa-facebook-square"></i>
+                        </a>
+
 
                     </div>
 
