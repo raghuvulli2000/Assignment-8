@@ -13,7 +13,9 @@
                 </div>
             </div>
             <mat-autocomplete #auto="matAutocomplete">
-                <mat-option *ngIf="isLoading" class="is-loading">Loading...</mat-option>
+                <mat-option *ngIf="isLoading" class="is-loading">
+                    <div class="loader"></div>
+                </mat-option>
                 <ng-container *ngIf="!isLoading">
                     <mat-option *ngFor="let option of options" [value]="option">
                         {{option}}
@@ -21,14 +23,14 @@
                 </ng-container>
             </mat-autocomplete>
             <div class="row mb-3">
-                <div class="col-6">
+                <div class="col-sm-6 mb-3">
                     <div class="form-group">
                         <label for="distance">Distance</label>
                         <input type="number" class="form-control input-lg" formControlName="distance">
                     </div>
 
                 </div>
-                <div class="col-5">
+                <div class="category">
                     <div class="form-group">
                         <label for="category">Category</label><span style="color:#ff0000">*</span>
                         <select class="form-select" id="sel1" name="sellist1" required formControlName="category">
