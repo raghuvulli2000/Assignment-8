@@ -32,12 +32,7 @@ export class BackendApiService {
 
   fetchOptions(id){
     console.log("Fetching Options");
-    return this.http.get(this.server + id, {
-  headers: {
-    'Accept': 'application/json',
-    'Authorization': `Bearer ${'1Qfvd-mBsP9XSvBJ8L3aAHDRYxp2owcYjtvu8JgvxI3mM_Jf7iukKAWwHt-0vfNkCFUV7CGKk2y_izbfNIIoI-j16ej7SR7efBnig2XMczkSCijr3jerfbXMKlw3Y3Yx'}`,
-  }
-})
+    return this.http.get(this.server + id);
 
   }
 

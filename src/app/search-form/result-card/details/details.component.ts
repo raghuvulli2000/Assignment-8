@@ -27,6 +27,7 @@ resformData:{"id":string, "name":string,"date":any, "hour":string, "minutes":str
   constructor(private backendapi: BackendApiService, private modalService: NgbModal, private resService: ReservationsService) { }
 
   ngOnInit(): void {
+    console.log("photos:" + this.detailData.photos.length);
     console.log(this.detailData.coordinates.latitude);
     this.mapOptions = {
    center: { lat: this.detailData.coordinates.latitude, lng: this.detailData.coordinates.longitude },
@@ -123,7 +124,10 @@ this.smallScreenFilterData.push(["Price range", this.detailData.price]);
 
 	open(content) {
     this.openModalInstance = content;
-		this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then(
+		this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title',  
+      backdrop : 'static',
+      keyboard : false
+} ).result.then(
 			(result) => {
 				this.closeResult = `Closed with: ${result}`;
 			},
@@ -159,7 +163,6 @@ this.smallScreenFilterData.push(["Price range", this.detailData.price]);
   this.modalService.dismissAll()
    }
    else{
-    
    const invalidElement = document.querySelectorAll('.ng-invalid')[1];
   (<HTMLInputElement>invalidElement).focus();
   if((<HTMLInputElement>invalidElement).name == "email" || (<HTMLInputElement>invalidElement).name == "date"){

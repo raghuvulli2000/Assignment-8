@@ -48,7 +48,8 @@
                     </div>
 
                     <div class="col-12 btn-center">
-                        <ngb-carousel [showNavigationIndicators]="false" interval="2000">
+                        <ngb-carousel *ngIf="detailData.photos.length != 0" [showNavigationIndicators]="false"
+                            interval="2000">
                             <ng-template ngbSlide *ngFor="let photo of detailData.photos">
                                 <div class="picsum-img-wrapper">
                                     <img [src]="photo" width="300px" height="300px" alt="Angular Carousel 1">
@@ -155,8 +156,6 @@
 
                 </div>
             </div>
-
-
 
             <div class="row-mb-3">
                 <label for="dateOfBirth">Time</label>
