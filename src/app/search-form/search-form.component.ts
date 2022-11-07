@@ -99,20 +99,28 @@ export class SearchFormComponent implements OnInit {
   }
   onLocationBlur(value){
     console.log(value);
+    var searchParams = new URLSearchParams({"loc":value});
+    console.log(searchParams.toString());
     var apiKey: string = "AIzaSyAhACUFKciRtELjw59DxRj6NKjg2P-kfH0";
-    var url = "https://maps.googleapis.com/maps/api/geocode/json?address=" +
-      value +
-      "&key=AIzaSyAhACUFKciRtELjw59DxRj6NKjg2P-kfH0";
+    var url = "https://angular-node-business-app.wl.r.appspot.com/geoloc?loc=" +
+     searchParams.toString() ;
+      console.log(url);
       this.http.get(url, {
   headers: {
     'Accept': 'application/json',
   }
 }).subscribe((data: any) => {
+  if(data.status === "ZERO_RESULTS"){
+    this.latitude = "-1";
+    this.longitude = "-1";
+  }
+  else{
   console.log(data.results[0].geometry.location);
     this.longitude =  data.results[0].geometry.location.lng;
     this.latitude = data.results[0].geometry.location.lat;
     console.log(this.latitude);
      console.log(this.longitude);
+  }
 })
 
   }

@@ -77,6 +77,26 @@ app.get("/businessid", function (request, response) {
   });
 });
 
+app.get("/geoloc", function (request, response) {
+  console.log("In detail route");
+  var loc = request.query.loc;
+  // console.log(Id);
+  var url =
+    "https://maps.googleapis.com/maps/api/geocode/json?address=" +
+    loc +
+    "&key=AIzaSyAhACUFKciRtELjw59DxRj6NKjg2P-kfH0";
+  console.log(url);
+
+  axios(url, config)
+    .then((resp) => {
+      // console.log(resp.data);
+      response.end(JSON.stringify(resp.data));
+    })
+    .catch(function (error) {
+      response.end('{"geometry":{"location":{"lat":-1,"lng":-1}}}');
+    });
+});
+
 app.get("/options", function (request, response) {
   console.log("In autocomplete");
   var Id = request.query.id;

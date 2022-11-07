@@ -24,8 +24,11 @@ ngOnChanges(): void {
     setTimeout(() => {
         this.table.nativeElement.scrollIntoView();
     }, 1);
+     //   this.table.nativeElement.scrollIntoView();
+
   
   }
+
   toMiles(dist: string){
     return (parseFloat(dist) / 1609.34).toFixed(2)
   }
