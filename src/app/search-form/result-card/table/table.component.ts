@@ -1,4 +1,4 @@
-import { Input,Component, OnInit } from '@angular/core';
+import { Input,Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { BackendApiService } from 'src/app/services/backend-api.service';
 
 @Component({
@@ -7,12 +7,25 @@ import { BackendApiService } from 'src/app/services/backend-api.service';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
-  @Input() tableData: [any];
+  @Input() tableData: [] = [];
+  @ViewChild("table") table: ElementRef;
   constructor(private backendapi: BackendApiService) { }
 
   ngOnInit(): void {
-  }
+    console.log(this.tableData);
+    console.log(this.tableData.length);
 
+  }
+//  ngAfterViewChecked(): void {
+//         this.table.nativeElement.scrollIntoView();
+//   }
+ngOnChanges(): void {
+    console.log("In result-card onChanges");
+    setTimeout(() => {
+        this.table.nativeElement.scrollIntoView();
+    }, 1);
+  
+  }
   toMiles(dist: string){
     return (parseFloat(dist) / 1609.34).toFixed(2)
   }

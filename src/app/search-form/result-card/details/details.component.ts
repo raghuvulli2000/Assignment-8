@@ -10,7 +10,9 @@ import { ReservationsService } from 'src/app/services/reservations.service';
    encapsulation: ViewEncapsulation.None
 })
 export class DetailsComponent implements OnInit {
+  load: boolean = false;
   	closeResult = '';
+    @ViewChild('detailComponent') detailComponent:ElementRef;
 @ViewChild('email') emailIp:NgbModal;
 @ViewChild('date') dateIp:NgbModal;
  @Input() detailData: any;
@@ -27,8 +29,22 @@ resformData:{"id":string, "name":string,"date":any, "hour":string, "minutes":str
   constructor(private backendapi: BackendApiService, private modalService: NgbModal, private resService: ReservationsService) { }
 
   ngOnInit(): void {
-    console.log("photos:" + this.detailData.photos.length);
-    console.log(this.detailData.coordinates.latitude);
+  this.backendapi.gotDataEvent.subscribe(()=>{
+    console.log("Observed in Detail Component on detail data");
+     // this.backendapi.recieveDataInDetailComponent.subscribe(()=>{
+    //   console.log("recieveEvent Emitted");
+    // console.log(this.detailData);
+    // console.log(this.reviewsData);
+    // console.log("photos:" + this.detailData.photos.length);
+    // console.log(this.detailData.coordinates.latitude);
+    // });
+    this.filteredData = [];
+    this.smallScreenFilterData = [];
+    this.load = true;
+   setTimeout(() => {
+   // console.log(this.detailComponent.nativeElement);
+   this.detailComponent.nativeElement.scrollIntoView();
+   }, 2);
     this.mapOptions = {
    center: { lat: this.detailData.coordinates.latitude, lng: this.detailData.coordinates.longitude },
    zoom : 14
@@ -53,7 +69,14 @@ this.smallScreenData();
   "minutes":"",
   "email":"",
 };
+  });
+    this.backendapi.backEvent.subscribe(()=>{
+      console.log("observed back press in detail component");
+    })
+   
   }
+
+
 filterData(){
 if(this.detailData.location && this.detailData.location.display_address){
  this.filteredData.push(["Address", this.detailData.location.display_address.join(" ")]);

@@ -1,4 +1,9 @@
-<div class="top">
+<div class=" top nodiv" *ngIf="tableData.length === 0">
+    <span class="nowhite">
+        <p>No results available</p>
+    </span>
+</div>
+<div #table class="top" *ngIf="tableData.length !== 0">
     <div class="row white">
         <table class="table table-striped">
             <thead>

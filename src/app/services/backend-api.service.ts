@@ -10,6 +10,8 @@ export class BackendApiService {
   detailsFetched = new EventEmitter<any>();
   reviewsFetched = new EventEmitter<[any]>();
   backEvent = new EventEmitter();
+  recieveDataInDetailComponent = new EventEmitter();
+  gotDataEvent = new EventEmitter();
   //server: string = "https://angular-node-business-app.wl.r.appspot.com/options?id=";
   server: string = "https://angular-node-business-app.wl.r.appspot.com/options?id=";
 
@@ -45,6 +47,7 @@ export class BackendApiService {
     this.http.get(trl).subscribe((data)=>{
       console.log(data);
       this.detailsFetched.emit(data);
+      this.gotDataEvent.emit();
     });
     var prl = "https://angular-node-business-app.wl.r.appspot.com" + "/businessid?id=" + id + "/reviews";
     console.log(prl);

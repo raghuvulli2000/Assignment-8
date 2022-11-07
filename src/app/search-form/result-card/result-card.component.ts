@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { BackendApiService } from 'src/app/services/backend-api.service';
 
 @Component({
@@ -12,6 +12,7 @@ export class ResultCardComponent implements OnInit {
   businessData: [any];
   detailData:any;
   reviewsData:[];
+  @ViewChild("resultCard") resCard: ElementRef;
   constructor(private backendApi: BackendApiService) { }
 
   ngOnInit(): void {
@@ -21,13 +22,20 @@ export class ResultCardComponent implements OnInit {
       this.businessData = data;
       console.log("In result-card");
       console.log(this.businessData);
+     
     });
+
+ 
     this.backendApi.detailsFetched.subscribe((data)=>{
+       this.loadTable = false;
+      this.loadDetail = true;
       this.detailData = data;
       console.log("In result-card details fetched into parent")
       console.log(this.detailData);
-      this.loadTable = false;
-      this.loadDetail = true;
+      setTimeout(() => {
+         this.backendApi.gotDataEvent.emit();
+      }, 1);
+     
     });
     this.backendApi.reviewsFetched.subscribe((data:any)=>{
       this.reviewsData = data;
@@ -43,5 +51,8 @@ export class ResultCardComponent implements OnInit {
       this.loadDetail = false;
     })
   }
+
+
+ 
 
 }

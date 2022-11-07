@@ -1,5 +1,12 @@
-<div class="container">
+<div class=" top nodiv" *ngIf="resData.length === 0">
+    <span class="nowhite">
+        <p>No reservations to show</p>
+    </span>
+</div>
+
+<div class="container" *ngIf="resData.length !== 0">
     <div class="top">
+
         <table class="table white">
             <thead>
                 <tr>

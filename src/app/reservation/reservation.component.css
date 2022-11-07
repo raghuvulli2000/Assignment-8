@@ -11,7 +11,8 @@ table {
 }
 
 td,
-th {
+th,
+.nodiv {
     text-align: center;
 }
 
@@ -20,6 +21,25 @@ th {
 .white {
     background-color: white;
     width: 55vw;
+    padding: 5px;
+}
+
+.nowhite {
+
+    background-color: white;
+    width: auto;
+    color: red;
+    border-radius: 14px;
+    font-size: large;
+    font-weight: 500;
+    padding-left: 40px;
+    padding-right: 40px;
+
+
+}
+
+.nowhite p {
+    margin: 0 !important;
 }
 
 @media screen and (max-width: 480px) {
