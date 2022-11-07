@@ -102,7 +102,7 @@ export class SearchFormComponent implements OnInit {
     var searchParams = new URLSearchParams({"loc":value});
     console.log(searchParams.toString());
     var apiKey: string = "AIzaSyAhACUFKciRtELjw59DxRj6NKjg2P-kfH0";
-    var url = "https://angular-node-business-app.wl.r.appspot.com/geoloc?loc=" +
+    var url = "https://angular-node-business-app.wl.r.appspot.com/geoloc?" +
      searchParams.toString() ;
       console.log(url);
       this.http.get(url, {
