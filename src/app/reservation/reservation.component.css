@@ -1,6 +1,6 @@
 table {
     background-color: white;
-    border-radius: 22px;
+    border-radius: 17px;
 }
 
 .top {
@@ -54,5 +54,6 @@ th,
     .white {
         background-color: white;
         width: 94vw;
+        margin-left: 125px;
     }
 }
