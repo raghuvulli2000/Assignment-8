@@ -3,6 +3,7 @@ import { BackendApiService } from 'src/app/services/backend-api.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl, FormArray, Validators, NgForm } from '@angular/forms';
 import { ReservationsService } from 'src/app/services/reservations.service';
+import {MatIconModule} from '@angular/material/icon'
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
@@ -149,7 +150,8 @@ this.smallScreenFilterData.push(["Price range", this.detailData.price]);
     this.openModalInstance = content;
 		this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title',  
       backdrop : 'static',
-      keyboard : false
+      keyboard : false,
+    
 } ).result.then(
 			(result) => {
 				this.closeResult = `Closed with: ${result}`;

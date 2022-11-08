@@ -123,7 +123,7 @@
         <div class="col-12 center">
             <h5>{{this.detailData.name}}</h5>
         </div>
-        <form class="row g-3 needs-validation" novalidate (ngSubmit)="validate(f)" #f="ngForm">
+        <form class="row g-3 needs-validation" novalidate ngbAutofocus (ngSubmit)="validate(f)" #f="ngForm">
             <div class="col-mb-3">
                 <label for="validationCustom05" class="form-label">Email</label>
                 <input type="text" [(ngModel)]="resformData.email" #emailInput #email="ngModel" class="form-control"
@@ -173,10 +173,14 @@
                     <div class="col-2">
                         <select #minutes="ngModel" ngModel class="form-select form-control rm_arr" id="sel1"
                             name="sellist1" required [(ngModel)]="resformData.minutes" name="minutes"
-                            [ngClass]="{'is-invalid': (minutes.errors && (minutes.touched || minutes.dirty)) ||  (minutes.errors && !minutes.touched && f.submitted), 'valid': !((hour.errors && (hour.touched || hour.dirty)) ||  (hour.errors && !hour.touched && f.submitted))}">
+                            [ngClass]="{'is-invalid': (minutes.errors && (minutes.touched || minutes.dirty)) ||  (minutes.errors && !minutes.touched && f.submitted), 'valid': !((hour.errors && (minutes.touched || minutes.dirty)) ||  (minutes.errors && !minutes.touched && f.submitted))}">
                             <option *ngFor="let min of mins" [value]="min">{{min}}</option>
                         </select>
                     </div>
+                    <div class="clock">
+                        <mat-icon>schedule</mat-icon>
+                    </div>
+
 
                 </div>
             </div>
