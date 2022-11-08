@@ -7,7 +7,7 @@
                 <div class="col-12">
                     <div class="form-group">
                         <label for="keyword">Keyword</label><span style="color:#ff0000">*</span>
-                        <input matInput required type="text" id="keyword" class="form-control input-lg"
+                        <input matInput required type="text" id="keyword" class="form-control form-control-lg"
                             formControlName="keyword" [matAutocomplete]="auto">
                     </div>
                 </div>
@@ -26,14 +26,16 @@
                 <div class="col-sm-6 mb-3">
                     <div class="form-group">
                         <label for="distance">Distance</label>
-                        <input type="number" class="form-control input-lg" formControlName="distance">
+                        <input type="number" class="form-control form-control-lg" formControlName="distance">
                     </div>
 
                 </div>
                 <div class="category">
                     <div class="form-group">
                         <label for="category">Category</label><span style="color:#ff0000">*</span>
-                        <select class="form-select" id="sel1" name="sellist1" required formControlName="category">
+
+                        <select class=" category-select form-select form-select-lg" varient="lightx" id="sel1"
+                            name="sellist1" required formControlName="category">
                             <option value="All">Default</option>
                             <option value="arts">Arts & Enteratinment</option>
                             <option value="health">Health & Medical</option>
@@ -51,7 +53,7 @@
                     <div class="form-group">
                         <label for="location">Location</label><span style="color:#ff0000">*</span>
                         <input type="text" #locationField (blur)="onLocationBlur($event.target.value)"
-                            class="form-control input-lg" required formControlName="location">
+                            class="form-control form-control-lg" required formControlName="location">
                     </div>
 
                 </div>

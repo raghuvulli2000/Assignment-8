@@ -35,5 +35,5 @@
     overflow-y: auto;
     z-index: 100;
     background: rgb(255, 255, 255);
-    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgb(51 90 146 / 28%) 100%) !important;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgb(32 76 182 / 35%) 100%) !important;
 }

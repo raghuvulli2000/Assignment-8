@@ -1,6 +1,7 @@
 .form {
     background-color: white;
     padding: 5vh;
+    padding-bottom: 0vh;
     width: 45rem;
     border-radius: 1vh;
 }

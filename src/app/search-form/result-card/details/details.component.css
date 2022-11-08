@@ -50,6 +50,10 @@
     margin-bottom: 15px;
 }
 
+/* .rm_arr {
+    background-image: none !important;
+} */
+
 .center p {
     margin: 0;
 }
@@ -129,4 +133,8 @@
 
 .color-green {
     color: green;
+}
+
+.review_name {
+    font-weight: bold;
 }

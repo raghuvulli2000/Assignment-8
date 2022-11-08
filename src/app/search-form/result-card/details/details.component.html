@@ -95,10 +95,10 @@
                         <tbody>
                             <tr *ngFor="let object of reviewsData; let i = index">
                                 <td>
-                                    <p>{{object.user.name}}<br>
-                                        Rating: {{object.rating}}/5</p>
-                                    <p>{{object.text}}</p>
-
+                                    <div class="review_name">{{object.user.name}}
+                                    </div>
+                                    <span>Rating: {{object.rating}}/5</span><br>
+                                    <div class="pb-2 pt-2">{{object.text}}</div>
                                     <p>{{object.time_created.slice(0,10)}}</p>
                                 </td>
                             </tr>
@@ -117,7 +117,7 @@
 <ng-template #content let-modal>
     <div class="modal-header">
         <h4 class="modal-title" id="modal-basic-title">Reservation form</h4>
-        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        <!-- <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button> -->
     </div>
     <div class="modal-body">
         <div class="col-12 center">
@@ -161,8 +161,8 @@
                 <label for="dateOfBirth">Time</label>
                 <div class="input-group">
                     <div class="col-2 p-6">
-                        <select #hour="ngModel" ngModel class="form-select form-control" id="sel1" name="sellist1"
-                            required [(ngModel)]="resformData.hour" name="hour"
+                        <select #hour="ngModel" ngModel class="form-select form-control rm_arr" id="sel1"
+                            name="sellist1" required [(ngModel)]="resformData.hour" name="hour"
                             [ngClass]="{'is-invalid': (hour.errors && (hour.touched || hour.dirty)) ||  (hour.errors && !hour.touched && f.submitted)}">
                             <option *ngFor="let hour of hours" [value]="hour">{{hour}}</option>
                         </select>
@@ -171,8 +171,8 @@
                         &nbsp; : &nbsp;
                     </div>
                     <div class="col-2">
-                        <select #minutes="ngModel" ngModel class="form-select form-control" id="sel1" name="sellist1"
-                            required [(ngModel)]="resformData.minutes" name="minutes"
+                        <select #minutes="ngModel" ngModel class="form-select form-control rm_arr" id="sel1"
+                            name="sellist1" required [(ngModel)]="resformData.minutes" name="minutes"
                             [ngClass]="{'is-invalid': (minutes.errors && (minutes.touched || minutes.dirty)) ||  (minutes.errors && !minutes.touched && f.submitted)}">
                             <option *ngFor="let min of mins" [value]="min">{{min}}</option>
                         </select>
