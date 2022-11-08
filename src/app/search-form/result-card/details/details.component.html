@@ -157,23 +157,23 @@
                 </div>
             </div>
 
-            <div class="row-mb-3">
+            <div class="row-ms-3">
                 <label for="dateOfBirth">Time</label>
                 <div class="input-group">
-                    <div class="col-2 p-6">
+                    <div class="col-md-2 col-sm-3">
                         <select #hour="ngModel" ngModel class="form-select form-control rm_arr" id="sel1"
                             name="sellist1" required [(ngModel)]="resformData.hour" name="hour"
                             [ngClass]="{'is-invalid': (hour.errors && (hour.touched || hour.dirty)) ||  (hour.errors && !hour.touched && f.submitted), 'valid': !((hour.errors && (hour.touched || hour.dirty)) ||  (hour.errors && !hour.touched && f.submitted))}">
                             <option *ngFor="let hour of hours" [value]="hour">{{hour}}</option>
                         </select>
                     </div>
-                    <div class="p-6 center">
+                    <div class="col-1 center">
                         &nbsp; : &nbsp;
                     </div>
-                    <div class="col-2">
+                    <div class="col-md-2 col-sm-3">
                         <select #minutes="ngModel" ngModel class="form-select form-control rm_arr" id="sel1"
                             name="sellist1" required [(ngModel)]="resformData.minutes" name="minutes"
-                            [ngClass]="{'is-invalid': (minutes.errors && (minutes.touched || minutes.dirty)) ||  (minutes.errors && !minutes.touched && f.submitted), 'valid': !((hour.errors && (minutes.touched || minutes.dirty)) ||  (minutes.errors && !minutes.touched && f.submitted))}">
+                            [ngClass]="{'is-invalid': (minutes.errors && (minutes.touched || minutes.dirty)) ||  (minutes.errors && !minutes.touched && f.submitted), 'valid': !((minutes.errors && (minutes.touched || minutes.dirty)) ||  (minutes.errors && !minutes.touched && f.submitted))}">
                             <option *ngFor="let min of mins" [value]="min">{{min}}</option>
                         </select>
                     </div>
@@ -184,8 +184,6 @@
 
                 </div>
             </div>
-
-
 
 
             <div class="col-12 center">

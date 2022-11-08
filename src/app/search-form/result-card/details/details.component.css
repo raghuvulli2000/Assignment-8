@@ -123,6 +123,7 @@
     width: 55vw;
     padding: 0px;
     border-radius: 20px;
+    border: 1px solid grey;
 }
 
 table.table.table-striped {
