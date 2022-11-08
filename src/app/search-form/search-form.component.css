@@ -4,6 +4,8 @@
     padding-bottom: 0vh;
     width: 45rem;
     border-radius: 1vh;
+    border: 1px solid grey;
+    border-radius: 10px;
 }
 
 .top {

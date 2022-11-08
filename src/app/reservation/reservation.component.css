@@ -1,6 +1,6 @@
 table {
     background-color: white;
-
+    border-radius: 22px;
 }
 
 .top {
@@ -10,12 +10,20 @@ table {
     margin: 0.01rem;
 }
 
+tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+
+}
+
 td,
 th,
 .nodiv {
     text-align: center;
 }
 
+.scrollme {
+    overflow-x: auto;
+}
 
 
 .white {
