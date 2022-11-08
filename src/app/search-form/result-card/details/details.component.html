@@ -1,5 +1,5 @@
 <div class="container white" *ngIf="load" #detailComponent>
-    <span style='font-size:30px;' (click)="goBack()">&#8592;</span>
+    <span style='font-size:30px;' (click)="goBack()" class="backHover">&#8592;</span>
     <div class="col-12 center">
 
         <h4>{{this.detailData.name}}</h4>
@@ -121,7 +121,7 @@
     </div>
     <div class="modal-body">
         <div class="col-12 center">
-            <p>{{this.detailData.name}}</p>
+            <h5>{{this.detailData.name}}</h5>
         </div>
         <form class="row g-3 needs-validation" novalidate (ngSubmit)="validate(f)" #f="ngForm">
             <div class="col-mb-3">
@@ -163,7 +163,7 @@
                     <div class="col-2 p-6">
                         <select #hour="ngModel" ngModel class="form-select form-control rm_arr" id="sel1"
                             name="sellist1" required [(ngModel)]="resformData.hour" name="hour"
-                            [ngClass]="{'is-invalid': (hour.errors && (hour.touched || hour.dirty)) ||  (hour.errors && !hour.touched && f.submitted)}">
+                            [ngClass]="{'is-invalid': (hour.errors && (hour.touched || hour.dirty)) ||  (hour.errors && !hour.touched && f.submitted), 'valid': !((hour.errors && (hour.touched || hour.dirty)) ||  (hour.errors && !hour.touched && f.submitted))}">
                             <option *ngFor="let hour of hours" [value]="hour">{{hour}}</option>
                         </select>
                     </div>
@@ -173,7 +173,7 @@
                     <div class="col-2">
                         <select #minutes="ngModel" ngModel class="form-select form-control rm_arr" id="sel1"
                             name="sellist1" required [(ngModel)]="resformData.minutes" name="minutes"
-                            [ngClass]="{'is-invalid': (minutes.errors && (minutes.touched || minutes.dirty)) ||  (minutes.errors && !minutes.touched && f.submitted)}">
+                            [ngClass]="{'is-invalid': (minutes.errors && (minutes.touched || minutes.dirty)) ||  (minutes.errors && !minutes.touched && f.submitted), 'valid': !((hour.errors && (hour.touched || hour.dirty)) ||  (hour.errors && !hour.touched && f.submitted))}">
                             <option *ngFor="let min of mins" [value]="min">{{min}}</option>
                         </select>
                     </div>

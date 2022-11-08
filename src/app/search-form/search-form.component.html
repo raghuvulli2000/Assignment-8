@@ -7,7 +7,7 @@
                 <div class="col-12">
                     <div class="form-group">
                         <label for="keyword">Keyword</label><span style="color:#ff0000">*</span>
-                        <input matInput required type="text" id="keyword" class="form-control form-control-lg"
+                        <input matInput required type="text" id="keyword" class="form-control form-control-lg mt-1"
                             formControlName="keyword" [matAutocomplete]="auto">
                     </div>
                 </div>
@@ -26,7 +26,7 @@
                 <div class="col-sm-6 mb-3">
                     <div class="form-group">
                         <label for="distance">Distance</label>
-                        <input type="number" class="form-control form-control-lg" formControlName="distance">
+                        <input type="number" class="form-control form-control-lg mt-1" formControlName="distance">
                     </div>
 
                 </div>
@@ -34,7 +34,7 @@
                     <div class="form-group">
                         <label for="category">Category</label><span style="color:#ff0000">*</span>
 
-                        <select class=" category-select form-select form-select-lg" varient="lightx" id="sel1"
+                        <select class=" category-select form-select form-select-lg mt-1" varient="lightx" id="sel1"
                             name="sellist1" required formControlName="category">
                             <option value="All">Default</option>
                             <option value="arts">Arts & Enteratinment</option>
@@ -53,7 +53,7 @@
                     <div class="form-group">
                         <label for="location">Location</label><span style="color:#ff0000">*</span>
                         <input type="text" #locationField (blur)="onLocationBlur($event.target.value)"
-                            class="form-control form-control-lg" required formControlName="location">
+                            class="form-control form-control-lg mt-1" required formControlName="location">
                     </div>
 
                 </div>
@@ -63,8 +63,8 @@
             <div class="row mb-3">
                 <div class="col-12">
                     <div class="form-group">
-                        <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something"
-                            formControlName="checkbox">&nbsp;
+                        <input class="form-check-input mt-1" type="checkbox" id="check1" name="option1"
+                            value="something" formControlName="checkbox">&nbsp;
                         <label>Auto-detect my location</label>
                     </div>
 

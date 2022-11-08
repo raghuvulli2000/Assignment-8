@@ -16,7 +16,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let object of tableData | slice:0:10; let i = index" (click)="viewDetail(object.id)">
+                <tr *ngFor="let object of tableData | slice:0:10; let i = index" (click)="viewDetail(object.id)"
+                    class="cursor-pointer">
                     <th scope="row">{{i+1}}</th>
                     <td><img [src]="object.image_url"></td>
                     <td>{{object.name}}</td>

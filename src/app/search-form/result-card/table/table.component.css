@@ -40,6 +40,10 @@ img {
 
 }
 
+.cursor-pointer:hover {
+    cursor: pointer;
+}
+
 .nodiv {
     text-align: center;
 }
