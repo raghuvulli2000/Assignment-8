@@ -7,8 +7,15 @@ export class ReservationsService {
   resData: Array<{"id":string, "name":string, "date":any, "hour":string, "minutes":string, "email":string}> = [];
   changeDataEvent = new EventEmitter<Array<{"id":string, "name":string, "date":any, "hour":string, "minutes":string, "email":string}>>();
   constructor() {
+
     this.resData = JSON.parse(localStorage.getItem("resData"));
+    console.log(this.resData);
+
+    if(this.resData)
     this.changeDataEvent.emit(this.resData.slice());
+    else{
+      this.resData = [];
+    }
   } 
   appendData(data: {"id":string,  "name":string,"date":any, "hour":string, "minutes":string, "email":string}){
     this.resData.push(data);

@@ -48,8 +48,9 @@
                     </div>
 
                     <div class="col-12 btn-center">
-                        <ngb-carousel *ngIf="detailData.photos.length != 0" [showNavigationIndicators]="false"
-                            interval="2000">
+                        <ngb-carousel #carousel *ngIf="detailData.photos.length != 0" [showNavigationIndicators]="false"
+                            interval="3000" (click)="onSlideClicked(currSlide)" (slide)="carSlide($event)"
+                            [pauseOnHover]="false" [pauseOnFocus]="false">
                             <ng-template ngbSlide *ngFor="let photo of detailData.photos">
                                 <div class="picsum-img-wrapper">
                                     <img [src]="photo" width="300px" height="300px" alt="Angular Carousel 1">
@@ -141,8 +142,8 @@
                 <div class="input-group">
 
                     <input #dateInput type="date" id="dateOfBirth validationCustom05" [(ngModel)]="resformData.date"
-                        #date="ngModel" class="form-control" name="dp" ngbDatepicker #dp="ngbDatepicker" required date
-                        ngModel
+                        #date="ngModel" class="form-control datepicker" name="dp" ngbDatepicker #dp="ngbDatepicker"
+                        required date ngModel
                         [ngClass]="{'is-invalid': (date.errors && (date.touched || date.dirty)) ||  (date.errors && !date.touched && f.submitted)}" />
 
 

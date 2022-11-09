@@ -1,6 +1,6 @@
 import { Input, Component, OnInit, ViewEncapsulation, ElementRef, ViewChild } from '@angular/core';
 import { BackendApiService } from 'src/app/services/backend-api.service';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons, NgbCarousel,  NgbSlideEventSource  } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl, FormArray, Validators, NgForm } from '@angular/forms';
 import { ReservationsService } from 'src/app/services/reservations.service';
 import {MatIconModule} from '@angular/material/icon'
@@ -16,8 +16,10 @@ export class DetailsComponent implements OnInit {
     @ViewChild('detailComponent') detailComponent:ElementRef;
 @ViewChild('email') emailIp:NgbModal;
 @ViewChild('date') dateIp:NgbModal;
+@ViewChild('carousel') carousel: NgbCarousel;
  @Input() detailData: any;
  @Input() reviewsData: any;
+ cycle: boolean = false;  
  filteredData: any[][] = [];
  smallScreenFilterData: any[][] = [];
  hours: any = [10,11,12,13,14,15,16,17];
@@ -45,6 +47,7 @@ resformData:{"id":string, "name":string,"date":any, "hour":string, "minutes":str
    setTimeout(() => {
    // console.log(this.detailComponent.nativeElement);
    this.detailComponent.nativeElement.scrollIntoView();
+   this.carousel.pause();
    }, 2);
     this.mapOptions = {
    center: { lat: this.detailData.coordinates.latitude, lng: this.detailData.coordinates.longitude },
@@ -202,6 +205,36 @@ this.smallScreenFilterData.push(["Price range", this.detailData.price]);
     }
     return this.filteredData;
   }
+  ngAfterViewInit() {
+    
+    
+  }
+ // console.log(this.carousel);
+onSlideClicked(crrSlide: any){
+  console.log("Clicked");
+  console.log(crrSlide);
+ if(!this.cycle){
+ this.carousel.cycle();
+ this.cycle = true;
+ }
+
+ else{
+  this.carousel.pause();
+  console.log("paused");
+  setTimeout(() => {
+    this.carousel.cycle();
+    console.log("started");
+  }, 5000);
+ }
+ 
+}
+
+carSlide(slideEvent: any){
+  // if(slideEvent.source === NgbSlideEventSource.ARROW_LEFT || slideEvent.source === NgbSlideEventSource.ARROW_RIGHT){
+  //   this.carousel.cycle();
+  //   console.log("slide with arrow");
+  // }
+}
 
   getColor(item: string){
     
