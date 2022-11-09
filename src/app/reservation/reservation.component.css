@@ -30,6 +30,16 @@ th,
     background-color: white;
     width: 55vw;
     padding: 5px;
+    border: none;
+}
+
+tbody,
+td,
+tfoot,
+th,
+thead,
+tr {
+    border-color: #dee2e6 !important;
 }
 
 .nowhite {
@@ -56,5 +66,6 @@ th,
         width: 94vw;
         margin-left: 30vw;
         margin-right: 3vw;
+        border: none !important
     }
 }
