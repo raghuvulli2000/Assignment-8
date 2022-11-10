@@ -12,6 +12,7 @@ export class BackendApiService {
   backEvent = new EventEmitter();
   recieveDataInDetailComponent = new EventEmitter();
   gotDataEvent = new EventEmitter();
+  gotlocatiionEvent = new EventEmitter();
   //server: string = "https://angular-node-business-app.wl.r.appspot.com/options?id=";
   //server: string = "https://angular-node-business-app.wl.r.appspot.com/options?id=";
   server: string = "https://business-app-angular-node.wl.r.appspot.com/options?id=";

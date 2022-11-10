@@ -1,3 +1,4 @@
+import { getLocaleDateFormat } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ReservationsService } from '../services/reservations.service';
 @Component({
@@ -24,5 +25,7 @@ export class ReservationComponent implements OnInit {
     alert("Reservation Cancelled!");
 
   }
+
+
 
 }

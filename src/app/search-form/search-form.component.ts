@@ -87,6 +87,23 @@ export class SearchFormComponent implements OnInit {
               this.searchForm.get('location').enable();
             }
           });
+
+
+          this.backendApi.gotlocatiionEvent.subscribe(()=>{
+                 var data: {"term": string, "radius": string, "latitude": string, "longitude":string, "category":string} = {
+      "latitude": this.latitude,
+      "longitude": this.longitude,
+      "term": this.searchForm.get('keyword').value,
+      'radius': (this.searchForm.get('distance').value == null || " ") ? Math.round(10 * 1609.34) + "" :Math.round(parseFloat(this.searchForm.get('distance').value) * 1609.34) + "",
+      "category" : this.searchForm.get("category").value
+    }
+    this.backendApi.fetchFormData(data);
+          })
+
+
+
+
+
   }
   private initForm(){
         this.searchForm = new FormGroup({
@@ -102,7 +119,7 @@ export class SearchFormComponent implements OnInit {
     var searchParams = new URLSearchParams({"loc":value});
     console.log(searchParams.toString());
     var apiKey: string = "AIzaSyAhACUFKciRtELjw59DxRj6NKjg2P-kfH0";
-    var url = "https://angular-node-business-app.wl.r.appspot.com/geoloc?" +
+    var url = "https://business-app-angular-node.wl.r.appspot.com/geoloc?" +
      searchParams.toString() ;
       console.log(url);
       this.http.get(url, {
@@ -110,7 +127,8 @@ export class SearchFormComponent implements OnInit {
     'Accept': 'application/json',
   }
 }).subscribe((data: any) => {
-  if(data.status === "ZERO_RESULTS"){
+  console.log(data);
+  if(!data.status || data.status === "ZERO_RESULTS"){
     this.latitude = "-1";
     this.longitude = "-1";
   }
@@ -121,21 +139,40 @@ export class SearchFormComponent implements OnInit {
     console.log(this.latitude);
      console.log(this.longitude);
   }
+  this.backendApi.gotlocatiionEvent.emit();
+ 
 })
 
   }
   onSubmit() {
-    setTimeout(() => {
-      var data: {"term": string, "radius": string, "latitude": string, "longitude":string, "category":string} = {
-      "latitude": this.latitude,
-      "longitude": this.longitude,
-      "term": this.searchForm.get('keyword').value,
-      'radius': (this.searchForm.get('distance').value == null || " ") ? Math.round(10 * 1609.34) + "" :Math.round(parseFloat(this.searchForm.get('distance').value) * 1609.34) + "",
-      "category" : this.searchForm.get("category").value
-    }
-    this.backendApi.fetchFormData(data);
-    }, 500);
+    // setTimeout(() => {
+    //   var data: {"term": string, "radius": string, "latitude": string, "longitude":string, "category":string} = {
+    //   "latitude": this.latitude,
+    //   "longitude": this.longitude,
+    //   "term": this.searchForm.get('keyword').value,
+    //   'radius': (this.searchForm.get('distance').value == null || " ") ? Math.round(10 * 1609.34) + "" :Math.round(parseFloat(this.searchForm.get('distance').value) * 1609.34) + "",
+    //   "category" : this.searchForm.get("category").value
+    // }
+    // this.backendApi.fetchFormData(data);
+    // }, 500);
     
+
+    if(!this.searchForm.get('checkbox').value){
+     this.onLocationBlur(this.searchForm.get('location').value);
+
+    }
+    else{
+      this.http.get("https://ipinfo.io/?token=5c0e5f4b3c703a").subscribe((data:any)=>{
+              this.latitude = data.loc.split(",")[0];
+              
+              // this.latitude = points[0];
+               this.longitude = data.loc.split(",")[1];
+               console.log(this.latitude);
+               console.log(this.longitude);
+                 this.backendApi.gotlocatiionEvent.emit();
+              })
+            
+    }
 
   }
   onClear(){

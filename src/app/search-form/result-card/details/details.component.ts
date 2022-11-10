@@ -196,11 +196,11 @@ this.smallScreenFilterData.push(["Price range", this.detailData.price]);
   this.modalService.dismissAll()
    }
    else{
-   const invalidElement = document.querySelectorAll('.ng-invalid')[1];
-  (<HTMLInputElement>invalidElement).focus();
-  if((<HTMLInputElement>invalidElement).name == "email" || (<HTMLInputElement>invalidElement).name == "date"){
-    this.resformData[(<HTMLInputElement>invalidElement).name] = "";
-  }
+  //  const invalidElement = document.querySelectorAll('.ng-invalid')[1];
+  // (<HTMLInputElement>invalidElement).focus();
+  // if((<HTMLInputElement>invalidElement).name == "email" || (<HTMLInputElement>invalidElement).name == "date"){
+  //   this.resformData[(<HTMLInputElement>invalidElement).name] = "";
+  // }
    }
   }
 
