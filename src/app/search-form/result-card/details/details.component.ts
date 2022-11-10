@@ -1,9 +1,10 @@
 import { Input, Component, OnInit, ViewEncapsulation, ElementRef, ViewChild } from '@angular/core';
 import { BackendApiService } from 'src/app/services/backend-api.service';
 import { NgbModal, ModalDismissReasons, NgbCarousel,  NgbSlideEventSource  } from '@ng-bootstrap/ng-bootstrap';
-import { FormGroup, FormControl, FormArray, Validators, NgForm } from '@angular/forms';
+import { FormGroup, FormControl, FormArray, Validators, NgForm, NgModel } from '@angular/forms';
 import { ReservationsService } from 'src/app/services/reservations.service';
 import {MatIconModule} from '@angular/material/icon'
+import { DataSource } from '@angular/cdk/collections';
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
@@ -12,6 +13,7 @@ import {MatIconModule} from '@angular/material/icon'
 })
 export class DetailsComponent implements OnInit {
   load: boolean = false;
+  minDate: string;
   	closeResult = '';
     @ViewChild('detailComponent') detailComponent:ElementRef;
 @ViewChild('email') emailIp:NgbModal;
@@ -32,6 +34,8 @@ resformData:{"id":string, "name":string,"date":any, "hour":string, "minutes":str
   constructor(private backendapi: BackendApiService, private modalService: NgbModal, private resService: ReservationsService) { }
 
   ngOnInit(): void {
+  this.minDate = new Date().toISOString().split("T")[0];
+  console.log(this.minDate);
   this.backendapi.gotDataEvent.subscribe(()=>{
     console.log("Observed in Detail Component on detail data");
      // this.backendapi.recieveDataInDetailComponent.subscribe(()=>{
@@ -181,8 +185,9 @@ this.smallScreenFilterData.push(["Price range", this.detailData.price]);
    this.resService.deleteData(this.detailData.id);
    alert("Reservation Cancelled!")
   }
-    validate(form1: NgForm){
+    validate(form1: NgForm, email:NgModel){
    console.log(form1);
+   console.log(email);
    if(form1.form.status === "VALID"){
     
   console.log(this.resformData);
@@ -235,6 +240,8 @@ carSlide(slideEvent: any){
   //   console.log("slide with arrow");
   // }
 }
+
+
 
   getColor(item: string){
     

@@ -10,6 +10,7 @@ export class ReservationComponent implements OnInit {
   constructor(private resService: ReservationsService) { }
 
   ngOnInit(): void {
+    this.resService.getData();
     this.resData = this.resService.resData;
     this.resService.changeDataEvent.subscribe((data:Array<{"id":string,  "name":string,"date":any, "hour":string, "minutes":string, "email":string}>)=>{
       this.resData = this.resService.resData;

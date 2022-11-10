@@ -124,16 +124,16 @@
         <div class="col-12 center">
             <h5>{{this.detailData.name}}</h5>
         </div>
-        <form class="row g-3 needs-validation" novalidate ngbAutofocus (ngSubmit)="validate(f)" #f="ngForm">
+        <form class="row g-3 needs-validation" novalidate ngbAutofocus (ngSubmit)="validate(f, email)" #f="ngForm">
             <div class="col-mb-3">
                 <label for="validationCustom05" class="form-label">Email</label>
                 <input type="text" [(ngModel)]="resformData.email" #emailInput #email="ngModel" class="form-control"
                     id="validationCustom05" required email ngModel name="email"
-                    [ngClass]="{'is-invalid': (email.errors && (email.touched || email.dirty)) || (email.errors && !email.touched && f.submitted) }">
-                <div class="invalid-feedback" *ngIf="!email.touched">
+                    [ngClass]="{'is-invalid':  (email.errors  && f.submitted) }">
+                <div class="invalid-feedback" *ngIf="email.errors && email.errors.required! == true ">
                     Email is required
                 </div>
-                <div class="invalid-feedback" *ngIf="email.touched">
+                <div class="invalid-feedback" *ngIf="email.errors && email.errors.email! == true">
                     Email must be a vaild email address
                 </div>
             </div>
@@ -142,16 +142,15 @@
                 <div class="input-group">
 
                     <input #dateInput type="date" id="dateOfBirth validationCustom05" [(ngModel)]="resformData.date"
-                        #date="ngModel" class="form-control datepicker" name="dp" ngbDatepicker #dp="ngbDatepicker"
-                        required date ngModel
-                        [ngClass]="{'is-invalid': (date.errors && (date.touched || date.dirty)) ||  (date.errors && !date.touched && f.submitted)}" />
+                        #date="ngModel" class="form-control datepicker" name="date" ngbDatepicker required date ngModel
+                        [ngClass]="{'is-invalid':  (date.errors  && f.submitted)}" [min]="minDate" />
 
 
-                    <div class="invalid-feedback" *ngIf="!date.touched">
+                    <div class="invalid-feedback" *ngIf="date.errors && date.errors.required! == true">
                         Date is required
                     </div>
 
-                    <div class="invalid-feedback" *ngIf="date.touched">
+                    <div class="invalid-feedback" *ngIf="date.errors && date.errors.date! == true">
                         Date must be a vaild
                     </div>
 
@@ -164,7 +163,7 @@
                     <div class="col-md-2 col-sm-3">
                         <select #hour="ngModel" ngModel class="form-select form-control rm_arr" id="sel1"
                             name="sellist1" required [(ngModel)]="resformData.hour" name="hour"
-                            [ngClass]="{'is-invalid': (hour.errors && (hour.touched || hour.dirty)) ||  (hour.errors && !hour.touched && f.submitted), 'valid': !((hour.errors && (hour.touched || hour.dirty)) ||  (hour.errors && !hour.touched && f.submitted))}">
+                            [ngClass]="{'is-invalid': (hour.errors  && f.submitted), 'valid': !(hour.errors  && f.submitted)}">
                             <option *ngFor="let hour of hours" [value]="hour">{{hour}}</option>
                         </select>
                     </div>
@@ -174,7 +173,7 @@
                     <div class="col-md-2 col-sm-3">
                         <select #minutes="ngModel" ngModel class="form-select form-control rm_arr" id="sel1"
                             name="sellist1" required [(ngModel)]="resformData.minutes" name="minutes"
-                            [ngClass]="{'is-invalid': (minutes.errors && (minutes.touched || minutes.dirty)) ||  (minutes.errors && !minutes.touched && f.submitted), 'valid': !((minutes.errors && (minutes.touched || minutes.dirty)) ||  (minutes.errors && !minutes.touched && f.submitted))}">
+                            [ngClass]="{'is-invalid': (minutes.errors && f.submitted), 'valid': !(hour.errors  && f.submitted)}">
                             <option *ngFor="let min of mins" [value]="min">{{min}}</option>
                         </select>
                     </div>
