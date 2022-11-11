@@ -173,7 +173,7 @@
                     <div class="col-md-2 col-sm-3">
                         <select #minutes="ngModel" ngModel class="form-select form-control rm_arr" id="sel1"
                             name="sellist1" required [(ngModel)]="resformData.minutes" name="minutes"
-                            [ngClass]="{'is-invalid': (minutes.errors && f.submitted), 'valid': !(hour.errors  && f.submitted)}">
+                            [ngClass]="{'is-invalid': (minutes.errors && f.submitted), 'valid': !(minutes.errors  && f.submitted)}">
                             <option *ngFor="let min of mins" [value]="min">{{min}}</option>
                         </select>
                     </div>

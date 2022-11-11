@@ -96,7 +96,7 @@ export class SearchFormComponent implements OnInit {
       "latitude": this.latitude,
       "longitude": this.longitude,
       "term": this.searchForm.get('keyword').value,
-      'radius': (this.searchForm.get('distance').value == null || " ") ? Math.round(10 * 1609.34) + "" :Math.round(parseFloat(this.searchForm.get('distance').value) * 1609.34) + "",
+      'radius': (this.searchForm.get('distance').value === null || this.searchForm.get('distance').value === "") ?( Math.round(10 * 1609.34) + "") :( Math.round(parseFloat(this.searchForm.get('distance').value) * 1609.34) + ""),
       "category" : this.searchForm.get("category").value
     }
     console.log(data);

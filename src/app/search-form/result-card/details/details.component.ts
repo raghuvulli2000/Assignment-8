@@ -51,7 +51,9 @@ resformData:{"id":string, "name":string,"date":any, "hour":string, "minutes":str
    setTimeout(() => {
    // console.log(this.detailComponent.nativeElement);
    this.detailComponent.nativeElement.scrollIntoView();
-   this.carousel.pause();
+   console.log(this.detailData.photos)
+   if(this.detailData.photos.length !== 0)
+      this.carousel.pause();
    }, 2);
     this.mapOptions = {
    center: { lat: this.detailData.coordinates.latitude, lng: this.detailData.coordinates.longitude },
@@ -90,7 +92,7 @@ if(this.detailData.location && this.detailData.location.display_address){
  this.filteredData.push(["Address", this.detailData.location.display_address.join(" ")]);
  
   }
-  if(this.detailData.categories){
+  if(this.detailData.categories && this.detailData.categories.length !== 0){
          var combine = "";
   var categories = this.detailData.categories;
     for (var i = 0; i < categories.length - 1; i++) {
@@ -128,7 +130,7 @@ this.smallScreenFilterData.push(["Phone", this.detailData.display_phone]);
  
   }
   this.smallScreenFilterData.push(["Status", status]);
-  if(this.detailData.categories){
+  if(this.detailData.categories && this.detailData.categories.length !== 0){
          var combine = "";
   var categories = this.detailData.categories;
     for (var i = 0; i < categories.length - 1; i++) {
@@ -229,7 +231,7 @@ onSlideClicked(crrSlide: any){
   setTimeout(() => {
     this.carousel.cycle();
     console.log("started");
-  }, 5000);
+  }, 3000);
  }
  
 }
