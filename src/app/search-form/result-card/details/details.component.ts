@@ -205,7 +205,7 @@ this.smallScreenFilterData.push(["Price range", this.detailData.price]);
   }
 
   getDetailData(){
-    if(window.innerWidth < 400){
+    if(window.innerWidth < 600){
       return this.smallScreenFilterData
     }
     return this.filteredData;

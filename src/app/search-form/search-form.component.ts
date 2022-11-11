@@ -90,6 +90,8 @@ export class SearchFormComponent implements OnInit {
 
 
           this.backendApi.gotlocatiionEvent.subscribe(()=>{
+            console.log("In geoLocationEvent subscribe");
+            
                  var data: {"term": string, "radius": string, "latitude": string, "longitude":string, "category":string} = {
       "latitude": this.latitude,
       "longitude": this.longitude,
@@ -97,6 +99,7 @@ export class SearchFormComponent implements OnInit {
       'radius': (this.searchForm.get('distance').value == null || " ") ? Math.round(10 * 1609.34) + "" :Math.round(parseFloat(this.searchForm.get('distance').value) * 1609.34) + "",
       "category" : this.searchForm.get("category").value
     }
+    console.log(data);
     this.backendApi.fetchFormData(data);
           })
 
@@ -161,7 +164,7 @@ export class SearchFormComponent implements OnInit {
      this.onLocationBlur(this.searchForm.get('location').value);
 
     }
-    else{
+    if(this.searchForm.get('checkbox').value === true){
       this.http.get("https://ipinfo.io/?token=5c0e5f4b3c703a").subscribe((data:any)=>{
               this.latitude = data.loc.split(",")[0];
               

@@ -53,10 +53,14 @@ app.get("/route", function (request, response) {
     longitude;
   console.log(url);
   var data;
-  axios(url, config).then((resp) => {
-    //  console.log(resp.data);
-    response.end(JSON.stringify(resp.data));
-  });
+  axios(url, config)
+    .then((resp) => {
+      //  console.log(resp.data);
+      response.end(JSON.stringify(resp.data));
+    })
+    .catch(function (error) {
+      response.end('{"businesses":"[]"}');
+    });
 });
 
 app.get("/businessid", function (request, response) {
