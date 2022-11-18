@@ -1,11 +1,14 @@
 .form {
     background-color: white;
-    padding: 5vh;
+    padding-left: 5vh;
+    padding-right: 5vh;
     padding-bottom: 0vh;
     width: 45rem;
     border-radius: 1vh;
     border: 1px solid grey;
     border-radius: 10px;
+    padding-top: 0px !important;
+    margin-top: 20px;
 }
 
 .top {
@@ -30,7 +33,7 @@
     font-size: 23px;
     font-weight: 550;
     text-align: center;
-    padding: 3vh;
+    padding: 5vh;
 }
 
 .text-btn-size {

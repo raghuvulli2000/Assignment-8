@@ -156,6 +156,10 @@ this.smallScreenFilterData.push(["Price range", this.detailData.price]);
 
 
 	open(content) {
+    this.resformData.date = "";
+this.resformData.hour = "";
+this.resformData.minutes = "";
+this.resformData.email = "";
     this.openModalInstance = content;
 		this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title',  
       backdrop : 'static',
@@ -243,7 +247,17 @@ carSlide(slideEvent: any){
   // }
 }
 
+closeModal(modal: any){
+  console.log(modal);
+// resformData:{"id":string, "name":string,"date":any, "hour":string, "minutes":string, "email":string};
+this.resformData.date = "";
+this.resformData.hour = "";
+this.resformData.minutes = "";
+this.resformData.email = "";
+modal.close("CLose Button");
 
+
+}
 
   getColor(item: string){
     

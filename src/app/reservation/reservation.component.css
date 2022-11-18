@@ -27,6 +27,9 @@ th,
     padding-left: 10px;
 }
 
+.fa-trash-o:hover {
+    cursor: pointer;
+}
 
 .white {
     background-color: white;

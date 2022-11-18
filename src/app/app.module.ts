@@ -43,6 +43,10 @@ const appRoutes: Routes = [
     path: "",
     redirectTo: '/search',
     pathMatch: 'full'
+  },
+  {
+    path: "**",
+    redirectTo: "/search",
   }
 ];
 

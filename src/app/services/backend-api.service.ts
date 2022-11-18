@@ -25,7 +25,7 @@ export class BackendApiService {
     var uri = "https://business-app-angular-node.wl.r.appspot.com" + "/route?" + searchParams.toString();
     console.log(uri);
     this.http.get(uri).subscribe((data:any)=>{
-     // console.log(data.businesses)
+      console.log(data.businesses)
       this.businessData = data.businesses;
       console.log(this.businessData);
       this.dataFetched.emit(this.businessData);

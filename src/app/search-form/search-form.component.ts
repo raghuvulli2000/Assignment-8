@@ -117,6 +117,8 @@ export class SearchFormComponent implements OnInit {
       'checkbox': new FormControl("", Validators.required)
     });
   }
+
+
   onLocationBlur(value){
     console.log(value);
     var searchParams = new URLSearchParams({"loc":value});
@@ -142,7 +144,26 @@ export class SearchFormComponent implements OnInit {
     console.log(this.latitude);
      console.log(this.longitude);
   }
-  this.backendApi.gotlocatiionEvent.emit();
+
+  console.log("Before calling event")
+             var da: {"term": string, "radius": string, "latitude": string, "longitude":string, "category":string} = {
+      "latitude": this.latitude,
+      "longitude": this.longitude,
+      "term": this.searchForm.get('keyword').value,
+      'radius': (this.searchForm.get('distance').value === null || this.searchForm.get('distance').value === "") ?( Math.round(10 * 1609.34) + "") :( Math.round(parseFloat(this.searchForm.get('distance').value) * 1609.34) + ""),
+      "category" : this.searchForm.get("category").value
+    }
+    console.log(da);
+
+                var dt: {"term": string, "radius": string, "latitude": string, "longitude":string, "category":string} = {
+      "latitude": this.latitude,
+      "longitude": this.longitude,
+      "term": this.searchForm.get('keyword').value,
+      'radius': (this.searchForm.get('distance').value === null || this.searchForm.get('distance').value === "") ?( Math.round(10 * 1609.34) + "") :( Math.round(parseFloat(this.searchForm.get('distance').value) * 1609.34) + ""),
+      "category" : this.searchForm.get("category").value
+    }
+    console.log(dt);
+    this.backendApi.fetchFormData(dt);
  
 })
 
@@ -172,7 +193,26 @@ export class SearchFormComponent implements OnInit {
                this.longitude = data.loc.split(",")[1];
                console.log(this.latitude);
                console.log(this.longitude);
-                 this.backendApi.gotlocatiionEvent.emit();
+                console.log("Before calling event")
+             var da: {"term": string, "radius": string, "latitude": string, "longitude":string, "category":string} = {
+      "latitude": this.latitude,
+      "longitude": this.longitude,
+      "term": this.searchForm.get('keyword').value,
+      'radius': (this.searchForm.get('distance').value === null || this.searchForm.get('distance').value === "") ?( Math.round(10 * 1609.34) + "") :( Math.round(parseFloat(this.searchForm.get('distance').value) * 1609.34) + ""),
+      "category" : this.searchForm.get("category").value
+    }
+    console.log(da);
+                 
+
+                   var dt: {"term": string, "radius": string, "latitude": string, "longitude":string, "category":string} = {
+      "latitude": this.latitude,
+      "longitude": this.longitude,
+      "term": this.searchForm.get('keyword').value,
+      'radius': (this.searchForm.get('distance').value === null || this.searchForm.get('distance').value === "") ?( Math.round(10 * 1609.34) + "") :( Math.round(parseFloat(this.searchForm.get('distance').value) * 1609.34) + ""),
+      "category" : this.searchForm.get("category").value
+    }
+    console.log(dt);
+    this.backendApi.fetchFormData(dt);
               })
             
     }
